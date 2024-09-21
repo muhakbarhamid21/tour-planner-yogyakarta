@@ -1,36 +1,24 @@
+from flask import Flask
+from apps.home.routes import home_bp
+from apps.admin.routes import admin_bp
+from apps.user.routes import user_bp
+from apps.authentication.routes import accounts_bp
+from apps.guest.routes import guest_bp
 import os
-from   flask_migrate import Migrate
-from   flask_minify  import Minify
-from   sys import exit
 
-from apps.config import config_dict
-from apps import create_app, db
+# Define the path to templates and static folders inside the apps directory
+template_dir = os.path.join(os.path.abspath('apps'), 'templates')
+static_dir = os.path.join(os.path.abspath('apps'), 'static')
 
-# WARNING: Don't run with debug turned on in production!
-DEBUG = (os.getenv('DEBUG', 'False') == 'True')
+# Initialize the Flask app with the specified template and static folder paths
+app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-# The configuration
-get_config_mode = 'Debug' if DEBUG else 'Production'
+# Register Blueprints
+app.register_blueprint(home_bp)
+app.register_blueprint(accounts_bp)
+app.register_blueprint(guest_bp)
+app.register_blueprint(user_bp)
+app.register_blueprint(admin_bp)
 
-try:
-
-    # Load the configuration using the default values
-    app_config = config_dict[get_config_mode.capitalize()]
-
-except KeyError:
-    exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
-
-app = create_app(app_config)
-Migrate(app, db)
-
-if not DEBUG:
-    Minify(app=app, html=True, js=False, cssless=False)
-    
-if DEBUG:
-    app.logger.info('DEBUG            = ' + str(DEBUG)             )
-    app.logger.info('Page Compression = ' + 'FALSE' if DEBUG else 'TRUE' )
-    app.logger.info('DBMS             = ' + app_config.SQLALCHEMY_DATABASE_URI)
-    app.logger.info('ASSETS_ROOT      = ' + app_config.ASSETS_ROOT )
-
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
