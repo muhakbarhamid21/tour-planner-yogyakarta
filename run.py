@@ -7,8 +7,8 @@ from apps.guest.routes import guest_bp
 import os
 
 # Define the path to templates and static folders inside the apps directory
-template_dir = os.path.join(os.path.abspath('apps'), 'templates')
-static_dir = os.path.join(os.path.abspath('apps'), 'static')
+template_dir = os.path.join('templates')
+static_dir = os.path.join('static')
 
 # Initialize the Flask app with the specified template and static folder paths
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
