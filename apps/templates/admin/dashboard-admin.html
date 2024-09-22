@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Dashboard Admin</title>
-  </head>
-  <body>
-    <h1>Dashboard Admin</h1>
-    <a href="/">Landing Page</a><br /><br />
-    <a href="/admin/dashboard-admin">Dashboard Admin</a> |
-    <a href="/admin/manage-users">Manage Users</a> |
-    <a href="/admin/manage-admins">Manage Admins</a><br /><br />
-    <a href="/">Logout</a>
-  </body>
-</html>
+<!-- -->
+{% extends "layouts/base.html" %}
+
+<!-- -->
+{% block title %} Dashboard Admin {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- -->
+{% include 'includes/sidebar-admin.html' %}
+
+<!-- -->
+{% include 'includes/navigation.html' %}
+
+<!-- -->
+{% block content %}{%endblock content %}
+
+<!-- -->
+{% include 'includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Dashboard User</title>
-  </head>
-  <body>
-    <h1>Dashboard User</h1>
-    <a href="/">Landing Page</a><br /><br />
-    <a href="/user/dashboard-user">Dashboard User</a> |
-    <a href="/user/tourist-attractions-user">Tourist Attractions User</a> |
-    <a href="/user/distance-generator-user">Distance Generator User</a> |
-    <a href="/user/weighting-user">Weighting User</a> |
-    <a href="/user/analysis-user">Analysis User</a> |
-    <a href="/user/results-user">Results User</a> |
-    <a href="/user/alternative-user">Alternative User</a> |
-    <a href="/user/parameter-user">Parameter User</a> |
-    <a href="/user/weight-user">Weight User</a><br /><br />
-    <a href="/">Logout</a>
-  </body>
-</html>
+<!-- -->
+{% extends "layouts/base.html" %}
+
+<!-- -->
+{% block title %} Dashboard - User {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- -->
+{% include 'includes/sidebar-user.html' %}
+
+<!-- -->
+{% include 'includes/navigation.html' %}
+
+<!-- -->
+{% block content %}{%endblock content %}
+
+<!-- -->
+{% include 'includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
