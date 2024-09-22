@@ -8,7 +8,6 @@ from .exception import APIException
 
 class AuthMiddleware:
 
-
     @staticmethod
     def is_valid_token(self, token):
         secret = os.getenv("SECRET")
