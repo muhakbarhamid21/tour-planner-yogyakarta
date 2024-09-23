@@ -24,6 +24,7 @@
             <h4 class="mb-3 f-w-400">Sign Up</h4>
 
             <form role="form" method="post" action="">
+
               <!-- Full Name -->
               <div class="input-group mb-3">
                 <span class="input-group-text">
@@ -41,7 +42,7 @@
               <!-- Username -->
               <div class="input-group mb-3">
                 <span class="input-group-text"
-                  ><i class="feather icon-hash"></i
+                  >@</i
                 ></span>
                 <input
                   type="text"
@@ -67,7 +68,7 @@
               </div>
 
               <!-- Password -->
-              <div class="input-group mb-4">
+              <div class="input-group mb-3">
                 <span class="input-group-text"
                   ><i class="feather icon-lock"></i
                 ></span>
@@ -78,6 +79,21 @@
                   class="form-control"
                   required
                 />
+              </div>
+
+              <!-- Role Selection -->
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <i class="feather icon-shield"></i>
+                </span>
+                <select 
+                  name="role" 
+                  class="form-control" 
+                  required>
+                  <option value="" disabled selected>Select Role</option>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
               </div>
 
               <!-- Button -->
