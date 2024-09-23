@@ -1,0 +1,82 @@
+<!-- Base Fullscreen -->
+{% extends "layouts/base-fullscreen.html" %}
+
+<!-- Login -->
+{% block title %} Login {% endblock %}
+
+<!-- Start Content -->
+{% block content %}
+
+<!-- [Sign In] Start -->
+<div class="auth-wrapper">
+  <div class="auth-content">
+    <div class="card">
+      <div class="row align-items-center text-center">
+        <div class="col-md-12">
+          <div class="card-body">
+            <img
+              src="/static/assets/images/logo-dark.png"
+              alt=""
+              class="img-fluid mb-4"
+            />
+
+            <h4 class="mb-3 f-w-400">Sign In</h4>
+
+            <form role="form" method="post" action="">
+              <!-- Username -->
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i class="feather icon-hash"></i>
+                </span>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <!-- Password -->
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <i class="feather icon-lock"></i>
+                </span>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <!-- Button -->
+              <button
+                type="submit"
+                name="login"
+                class="btn btn-block btn-primary mt-2 mb-4"
+              >
+                Sign In
+              </button>
+            </form>
+
+            <p class="mb-2">
+              Don't have an account?
+              <a href="/accounts/signup" class="f-w-400">Sign Up</a><br />
+              <a href="/user/dashboard-user">User</a> |
+              <a href="/admin/dashboard-admin">Admin</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [Sign In ] End -->
+
+{% endblock content %}
+<!-- End Content -->
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
