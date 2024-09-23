@@ -35,6 +35,15 @@
     </div>
     <!-- [ Pre-loader ] End -->
 
+    <!---->
+    {% include 'includes/sidebar-guest.html' %}
+    <!---->
+    {% include 'includes/navigation-guest.html' %}
+    <!---->
+    {% block content %}{% endblock content %}
+    <!---->
+    {% include 'includes/scripts.html' %}
+
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
   </body>
