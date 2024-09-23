@@ -3,6 +3,7 @@
   <head>
     <title>{% block title %}{% endblock %}- Tour Planner Yogyakarta</title>
 
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -11,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <meta name="author" content="Codedthemes, AppSeed" />
+    <meta name="author" content="CodedThemes, AppSeed" />
 
     <!-- Favicon icon -->
     <link
@@ -27,13 +28,10 @@
     {% block stylesheets %}{% endblock stylesheets %}
   </head>
   <body class="">
-    <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
-      <div class="loader-track">
-        <div class="loader-fill"></div>
-      </div>
-    </div>
-    <!-- [ Pre-loader ] End -->
+    {% block content %}{% endblock content %}
+
+    <script src="/static/assets/js/plugins/popper.min.js"></script>
+    <script src="/static/assets/js/plugins/bootstrap.min.js"></script>
 
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
