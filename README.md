@@ -59,7 +59,7 @@ For development purposes, set the Flask app environment variables:
 
   ```bash
   export FLASK_APP=run.py
-  expord FLASK_ENV=development
+  export FLASK_ENV=development
   ```
 
 - On Windows:
