@@ -1,9 +1,12 @@
 from flask import Flask
+from flask_migrate import Migrate
+
 from apps.home.routes import home_bp
 from apps.admin.routes import admin_bp
 from apps.user.routes import user_bp
 from apps.authentication.routes import accounts_bp
 from apps.guest.routes import guest_bp
+
 import os
 
 # Define the path to templates and static folders inside the apps directory
