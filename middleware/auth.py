@@ -1,32 +1,19 @@
-import os
+from flask import request, jsonify
 import jwt
 
-from flask import request
-
-from .exception import APIException
-
-
 class AuthMiddleware:
+    def __init__(self, app, secret_key):
+        self.app = app
+        self.secret_key = secret_key
+        self.app.before_request(self.check_token)  # Middleware hook sebelum request
 
-    @staticmethod
-    def is_valid_token(self, token):
-        secret = os.getenv("SECRET")
+    def check_token(self):
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({'message': 'Token is missing!'}), 403
         try:
-            return jwt.decode(token, secret, algorithms=["HS256"])
-        except Exception as e:
-            print(str(e))
-
-    def authenticate(self):
-        auth_token = request.headers.get("Authorization")
-
-        if not auth_token or not self.is_valid_token(auth_token):
-            raise APIException("Unauthorized", 401)
-
-
-def required_authentication(func):
-
-    def wrapper(*args, **kwargs):
-        AuthMiddleware().authenticate()
-        return func(*args, **kwargs)
-
-    return wrapper
+            jwt.decode(token, self.secret_key, algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token expired!'}), 403
+        except jwt.InvalidTokenError:
+            return jsonify({'message': 'Invalid token!'}), 403
