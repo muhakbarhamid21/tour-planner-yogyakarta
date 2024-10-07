@@ -2,7 +2,7 @@
 {% extends "layouts/base-user.html" %}
 
 <!-- Title -->
-{% block title %} Weight - User {% endblock %}
+{% block title %} Criteria - User {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -20,7 +20,7 @@
         <div class="row align-items-center">
           <div class="col-md-12">
             <div class="page-header-title">
-              <h5 class="m-b-10">Weight</h5>
+              <h5 class="m-b-10">Criteria</h5>
             </div>
             <ul class="breadcrumb">
               <li class="breadcrumb-item">
@@ -28,7 +28,7 @@
                   ><i class="feather icon-home"></i
                 ></a>
               </li>
-              <li class="breadcrumb-item"><a href="#">Weight</a></li>
+              <li class="breadcrumb-item"><a href="#">Criteria</a></li>
             </ul>
           </div>
         </div>
@@ -41,40 +41,37 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Edit Weight</h5>
+            <h5>Edit Parameter</h5>
           </div>
           <div class="card-body">
             <form>
               <div class="form-group row">
-                <label class="col-form-label col-sm-2">Name Weight</label>
+                <label class="col-form-label col-sm-2">Parameter</label>
                 <div class="col-sm-10 mb-3">
                   <select
                     class="form-control bordered-dropdown"
                     id="type-of-recreations"
                   >
                     <option value="" selected disabled hidden>-</option>
-                    <option>Very Low</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
+                    <option>Distance (C1)</option>
+                    <option>Entry Price (C2)</option>
+                    <option>Rating (C3) - Star (C3.1)</option>
+                    <option>Rating (C3) - Comment (C3.2)</option>
+                    <option>Facility (C4)</option>
                   </select>
                 </div>
               </div>
 
               <div class="form-group row">
-                <label class="col-form-label col-sm-2">Scale</label>
+                <label class="col-form-label col-sm-2">Criteria</label>
                 <div class="col-sm-10 mb-3">
                   <select
                     class="form-control bordered-dropdown"
                     id="type-of-recreations"
                   >
                     <option value="" selected disabled hidden>-</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option>Cost</option>
+                    <option>Benefit</option>
                   </select>
                 </div>
               </div>
@@ -93,7 +90,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Weight</h5>
+            <h5>Parameter</h5>
           </div>
           <div class="card-body table-border-style">
             <div class="table-responsive">
@@ -101,16 +98,16 @@
                 <thead>
                   <tr>
                     <th class="text-center align-middle">#</th>
-                    <th class="text-center align-middle">Weight</th>
-                    <th class="text-center align-middle">Scale</th>
+                    <th class="text-center align-middle">Parameter</th>
+                    <th class="text-center align-middle">Criteria</th>
                     <th class="text-center align-middle">Editing</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td class="text-center">1</td>
-                    <td class="text-center">Very Low</td>
-                    <td class="text-center">1</td>
+                    <td class="text-center">Distance (C1)</td>
+                    <td class="text-center">Cost</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -119,8 +116,8 @@
                   </tr>
                   <tr>
                     <td class="text-center">2</td>
-                    <td class="text-center">Low</td>
-                    <td class="text-center">2</td>
+                    <td class="text-center">Entry Price (C2)</td>
+                    <td class="text-center">Cost</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -129,8 +126,8 @@
                   </tr>
                   <tr>
                     <td class="text-center">3</td>
-                    <td class="text-center">Moderate</td>
-                    <td class="text-center">3</td>
+                    <td class="text-center">Rating (C3) - Star (C3.1)</td>
+                    <td class="text-center">Benefit</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -139,8 +136,8 @@
                   </tr>
                   <tr>
                     <td class="text-center">4</td>
-                    <td class="text-center">High</td>
-                    <td class="text-center">4</td>
+                    <td class="text-center">Rating (C3) - Comment (C3.2)</td>
+                    <td class="text-center">Benefit</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -149,8 +146,8 @@
                   </tr>
                   <tr>
                     <td class="text-center">5</td>
-                    <td class="text-center">Very High</td>
-                    <td class="text-center">5</td>
+                    <td class="text-center">Facility</td>
+                    <td class="text-center">Benefit</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>

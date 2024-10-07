@@ -46,32 +46,32 @@
           <div class="card-body">
             <form>
               <div class="form-group row">
-                <label class="col-form-label col-sm-2">Parameter</label>
+                <label class="col-form-label col-sm-2">Lower Bound</label>
                 <div class="col-sm-10 mb-3">
-                  <select
-                    class="form-control bordered-dropdown"
-                    id="type-of-recreations"
-                  >
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Distance (C1)</option>
-                    <option>Entry Price (C2)</option>
-                    <option>Rating (C3) - Star (C3.1)</option>
-                    <option>Rating (C3) - Comment (C3.2)</option>
-                    <option>Facility (C4)</option>
-                  </select>
+                  <input type="text" class="form-control" />
                 </div>
               </div>
 
               <div class="form-group row">
-                <label class="col-form-label col-sm-2">Scale</label>
+                <label class="col-form-label col-sm-2">Upper Bound</label>
+                <div class="col-sm-10 mb-3">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Weight</label>
                 <div class="col-sm-10 mb-3">
                   <select
                     class="form-control bordered-dropdown"
                     id="type-of-recreations"
                   >
                     <option value="" selected disabled hidden>-</option>
-                    <option>Cost</option>
-                    <option>Benefit</option>
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
                   </select>
                 </div>
               </div>
@@ -90,24 +90,33 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Parameter</h5>
+            <h5>Distance</h5>
           </div>
           <div class="card-body table-border-style">
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-center align-middle">#</th>
-                    <th class="text-center align-middle">Parameter</th>
-                    <th class="text-center align-middle">Criteria</th>
-                    <th class="text-center align-middle">Editing</th>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" colspan="2">
+                      Range (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">Weight</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Lower Bound</th>
+                    <th class="text-center align-middle">Upper Bound</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td class="text-center">1</td>
-                    <td class="text-center">Distance (C1)</td>
-                    <td class="text-center">Cost</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">5</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -116,8 +125,9 @@
                   </tr>
                   <tr>
                     <td class="text-center">2</td>
-                    <td class="text-center">Entry Price (C2)</td>
-                    <td class="text-center">Cost</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">9</td>
+                    <td class="text-center">4</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -126,8 +136,9 @@
                   </tr>
                   <tr>
                     <td class="text-center">3</td>
-                    <td class="text-center">Rating (C3) - Star (C3.1)</td>
-                    <td class="text-center">Benefit</td>
+                    <td class="text-center">9</td>
+                    <td class="text-center">14</td>
+                    <td class="text-center">3</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -136,8 +147,9 @@
                   </tr>
                   <tr>
                     <td class="text-center">4</td>
-                    <td class="text-center">Rating (C3) - Comment (C3.2)</td>
-                    <td class="text-center">Benefit</td>
+                    <td class="text-center">14</td>
+                    <td class="text-center">19</td>
+                    <td class="text-center">2</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>
@@ -146,8 +158,356 @@
                   </tr>
                   <tr>
                     <td class="text-center">5</td>
-                    <td class="text-center">Facility</td>
-                    <td class="text-center">Benefit</td>
+                    <td class="text-center">19</td>
+                    <td class="text-center"><</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Entry Price</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" colspan="2">
+                      Range (Rp)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">Weight</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Lower Bound</th>
+                    <th class="text-center align-middle">Upper Bound</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">9000</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">2</td>
+                    <td class="text-center">9000</td>
+                    <td class="text-center">19000</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">3</td>
+                    <td class="text-center">19000</td>
+                    <td class="text-center">29000</td>
+                    <td class="text-center">3</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">4</td>
+                    <td class="text-center">29000</td>
+                    <td class="text-center">39000</td>
+                    <td class="text-center">2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">5</td>
+                    <td class="text-center">39000</td>
+                    <td class="text-center"><</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Rating</h5>
+          </div>
+          <div class="card-body">
+            <h6>Star</h6>
+            <div class="table-border-style">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center align-middle" rowspan="2">#</th>
+                      <th class="text-center align-middle" colspan="2">
+                        Range
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Weight
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Editing
+                      </th>
+                    </tr>
+                    <tr>
+                      <th class="text-center align-middle">Lower Bound</th>
+                      <th class="text-center align-middle">Upper Bound</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">1</td>
+                      <td class="text-center">4,80</td>
+                      <td class="text-center">5,00</td>
+                      <td class="text-center">5</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">2</td>
+                      <td class="text-center">4,70</td>
+                      <td class="text-center">4,79</td>
+                      <td class="text-center">4</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">3</td>
+                      <td class="text-center">4,60</td>
+                      <td class="text-center">4,69</td>
+                      <td class="text-center">3</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">4</td>
+                      <td class="text-center">4,40</td>
+                      <td class="text-center">4,59</td>
+                      <td class="text-center">2</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">5</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">4,39</td>
+                      <td class="text-center">1</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr />
+            <h6>Comment</h6>
+            <div class="table-border-style">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center align-middle" rowspan="2">#</th>
+                      <th class="text-center align-middle" colspan="2">
+                        Range
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Weight
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Editing
+                      </th>
+                    </tr>
+                    <tr>
+                      <th class="text-center align-middle">Lower Bound</th>
+                      <th class="text-center align-middle">Upper Bound</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">1</td>
+                      <td class="text-center">24000</td>
+                      <td class="text-center"><</td>
+                      <td class="text-center">5</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">2</td>
+                      <td class="text-center">14000</td>
+                      <td class="text-center">24000</td>
+                      <td class="text-center">4</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">3</td>
+                      <td class="text-center">8000</td>
+                      <td class="text-center">14000</td>
+                      <td class="text-center">3</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">4</td>
+                      <td class="text-center">3000</td>
+                      <td class="text-center">8000</td>
+                      <td class="text-center">2</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">5</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">3000</td>
+                      <td class="text-center">1</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Facility</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" colspan="2">Range</th>
+                    <th class="text-center align-middle" rowspan="2">Weight</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Lower Bound</th>
+                    <th class="text-center align-middle">Upper Bound</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Very Complete</td>
+                    <td class="text-center">Very Complete</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">2</td>
+                    <td class="text-center">Complete</td>
+                    <td class="text-center">Complete</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">3</td>
+                    <td class="text-center">Enough</td>
+                    <td class="text-center">Enough</td>
+                    <td class="text-center">3</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">4</td>
+                    <td class="text-center">Incomplete</td>
+                    <td class="text-center">Incomplete</td>
+                    <td class="text-center">2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">5</td>
+                    <td class="text-center">Very Incomplete</td>
+                    <td class="text-center">Very Incomplete</td>
+                    <td class="text-center">1</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
                         <i class="fas fa-edit"></i>

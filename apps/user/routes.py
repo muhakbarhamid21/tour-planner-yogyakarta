@@ -36,6 +36,10 @@ def alternative_user():
 def parameter_user():
     return render_template('user/parameter-user.html')
 
+@user_bp.route('/user/criteria-user')
+def criteria():
+    return render_template('user/criteria-user.html')
+
 @user_bp.route('/user/weight-user')
 def weight_user():
     return render_template('user/weight-user.html')
