@@ -41,18 +41,297 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Add Alternative</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2"
+                  >Type of Attractions</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="type-of-recreations"
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Culture & History</option>
+                    <option>Education & Learning</option>
+                    <option>Nature & Recreation</option>
+                    <option>Adventure</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Entry Price (C2)</label>
+                <div class="col-sm-10 mb-3">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Star (C3.1)</label>
+                <div class="col-sm-10 mb-3">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Comment (C3.2)</label>
+                <div class="col-sm-10 mb-3">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Facility (C4)</label>
+                <div class="col-sm-10 mb-3">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top: 20px"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <!-- Card -->
-      <div class="col-sm-12">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Culture & History</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Attractions Tempat wisata</td>
+                    <td class="text-center">2.790</td>
+                    <td class="text-center">15.000</td>
+                    <td class="text-center">4,6</td>
+                    <td class="text-center">41.684</td>
+                    <td class="text-center">4,2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Education & Learning</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Attractions Tempat wisata</td>
+                    <td class="text-center">2.790</td>
+                    <td class="text-center">15.000</td>
+                    <td class="text-center">4,6</td>
+                    <td class="text-center">41.684</td>
+                    <td class="text-center">4,2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Nature & Recreation</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Attractions Tempat wisata</td>
+                    <td class="text-center">2.790</td>
+                    <td class="text-center">15.000</td>
+                    <td class="text-center">4,6</td>
+                    <td class="text-center">41.684</td>
+                    <td class="text-center">4,2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Adventure</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Editing
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Attractions Tempat wisata</td>
+                    <td class="text-center">2.790</td>
+                    <td class="text-center">15.000</td>
+                    <td class="text-center">4,6</td>
+                    <td class="text-center">41.684</td>
+                    <td class="text-center">4,2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
