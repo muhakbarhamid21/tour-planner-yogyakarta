@@ -41,18 +41,126 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Edit Weight</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Name Weight</label>
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="type-of-recreations"
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Very Low</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Very High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Scale</label>
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="type-of-recreations"
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top: 20px"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <!-- Card -->
-      <div class="col-sm-12">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Weight</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">#</th>
+                    <th class="text-center align-middle">Weight</th>
+                    <th class="text-center align-middle">Scale</th>
+                    <th class="text-center align-middle">Editing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Very Low</td>
+                    <td class="text-center">1</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">2</td>
+                    <td class="text-center">Low</td>
+                    <td class="text-center">2</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">3</td>
+                    <td class="text-center">Moderate</td>
+                    <td class="text-center">3</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">4</td>
+                    <td class="text-center">Low</td>
+                    <td class="text-center">4</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">5</td>
+                    <td class="text-center">Very High</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
