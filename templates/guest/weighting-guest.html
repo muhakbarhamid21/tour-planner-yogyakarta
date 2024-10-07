@@ -36,25 +36,140 @@
     </div>
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
+
     <div class="row">
       <!-- Card -->
+      <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Type of Attractions</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row">
+                <label for="type-of-recreations" class="col-form-label col-sm-2"
+                  >Type of Attractions</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="type-of-recreations"
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Culture & History</option>
+                    <option>Education & Learning</option>
+                    <option>Nature & Recreation</option>
+                    <option>Adventure</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Weighting</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row">
+                <label for="distance" class="col-form-label col-sm-2"
+                  >Distance (C1)</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select class="form-control bordered-dropdown" id="distance">
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Very Low</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Very High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="entry-price" class="col-form-label col-sm-2"
+                  >Entry Price (C2)</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="entry-price"
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Very Low</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Very High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="star" class="col-form-label col-sm-2"
+                  >Star (C3.1)</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select class="form-control bordered-dropdown" id="star">
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Very Low</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Very High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="comment" class="col-form-label col-sm-2"
+                  >Comment (C3.2)</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select class="form-control bordered-dropdown" id="comment">
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Very Low</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Very High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="facility" class="col-form-label col-sm-2"
+                  >Facility (C4)</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select class="form-control bordered-dropdown" id="facility">
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Very Low</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Very High</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top: 20px"
+              >
+                Analysis
+              </button>
+            </form>
+          </div>
         </div>
       </div>
+      <!-- Card -->
     </div>
     <!-- [ Main Content ] end -->
   </div>
