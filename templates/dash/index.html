@@ -1,8 +1,8 @@
 <!-- Base -->
-{% extends "layouts/base-guest.html" %}
+{% extends "layouts/base.html" %}
 
 <!-- Title -->
-{% block title %} Analysis - Guest {% endblock %}
+{% block title %} Analysis - User {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -24,7 +24,7 @@
             </div>
             <ul class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="/guest/dashboard-guest"
+                <a href="/user/dashboard-user"
                   ><i class="feather icon-home"></i
                 ></a>
               </li>
@@ -41,18 +41,443 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Type of Attraction</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body">{..type of attraction}</div>
         </div>
       </div>
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Title</h5>
+            <h5>Attraction</h5>
           </div>
-          <div class="card-body">Content</div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="3">#</th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Alternative
+                    </th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" colspan="5">
+                      Parameter
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM) (C1)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price (C2)
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      Rating (C3)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility (C4)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star (C3.1)</th>
+                    <th class="text-center align-middle">Comment (C3.2)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Evaluation Matrix (xij)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="3">#</th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Alternative
+                    </th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" colspan="5">
+                      Parameter
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM) (C1)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price (C2)
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      Rating (C3)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility (C4)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star (C3.1)</th>
+                    <th class="text-center align-middle">Comment (C3.2)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Normalized Performance Rating (rij)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="3">#</th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Alternative
+                    </th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" colspan="5">
+                      Parameter
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM) (C1)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price (C2)
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      Rating (C3)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility (C4)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star (C3.1)</th>
+                    <th class="text-center align-middle">Comment (C3.2)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Normalized Weight Rating (yij)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="3">#</th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Alternative
+                    </th>
+                    <th class="text-center align-middle" rowspan="3">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" colspan="5">
+                      Parameter
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM) (C1)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price (C2)
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      Rating (C3)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility (C4)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star (C3.1)</th>
+                    <th class="text-center align-middle">Comment (C3.2)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Positive Ideal Solution (A<sup>+</sup>)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="5" class="text-center align-middle">
+                      PARAMETER
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">
+                      DISTANCE (KM) (C<sub>1</sub>)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      ENTRY PRICE (C<sub>2</sub>)
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      RATING (C<sub>3</sub>)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      FACILITY (C<sub>4</sub>)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">
+                      STAR (C<sub>3.1</sub>)
+                    </th>
+                    <th class="text-center align-middle">
+                      COMMENT (C<sub>3.2</sub>)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">
+                      y<sub>1</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>2</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>3</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>4</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>5</sub><sup>+</sup>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Negative Ideal Solution (A<sup>-</sup>)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="5" class="text-center align-middle">
+                      PARAMETER
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">
+                      DISTANCE (KM) (C<sub>1</sub>)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      ENTRY PRICE (C<sub>2</sub>)
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      RATING (C<sub>3</sub>)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      FACILITY (C<sub>4</sub>)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">
+                      STAR (C<sub>3.1</sub>)
+                    </th>
+                    <th class="text-center align-middle">
+                      COMMENT (C<sub>3.2</sub>)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">
+                      y<sub>1</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>2</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>3</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>4</sub><sup>+</sup>
+                    </th>
+                    <th class="text-center align-middle">
+                      y<sub>5</sub><sup>+</sup>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Positive Distance (D<sub>i</sub><sup>+</sup>)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Alternatif</th>
+                    <th class="text-center align-middle">Attractions</th>
+                    <th class="text-center align-middle">
+                      D<sub>i</sub><sup>+</sup>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Isi data di sini -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Negative Distance (D<sub>i</sub><sup>-</sup>)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Alternatif</th>
+                    <th class="text-center align-middle">Attractions</th>
+                    <th class="text-center align-middle">
+                      D<sub>i</sub><sup>-</sup>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Isi data di sini -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Preference Value (V<sub>i</sub>)</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Alternatif</th>
+                    <th class="text-center align-middle">Attractions</th>
+                    <th class="text-center align-middle">V<sub>i</sub></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Isi data di sini -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Rangking</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Alternatif</th>
+                    <th class="text-center align-middle">Attractions</th>
+                    <th class="text-center align-middle">Ranking</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Isi data di sini -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

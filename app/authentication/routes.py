@@ -24,11 +24,12 @@ def signin():
                 'username': user_data['username'],
                 'email': user_data['email'],
                 'is_admin': user_data['is_admin'],
+                'fullname': user_data['fullname'],
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
             }, os.getenv('SECRET_KEY'))
 
             # Create response and set token in cookies
-            resp = make_response(redirect(url_for('home.index')))
+            resp = make_response(redirect(url_for('dash.dashboard')))
             resp.set_cookie('token', token)
 
             return resp
@@ -52,3 +53,11 @@ def signup():
 
     # Jika metode GET, tampilkan form registrasi
     return render_template('accounts/signup.html')
+
+
+@accounts_bp.route('/accounts/signout', methods=["POST"])
+def signout():
+    response = make_response(redirect(url_for('accounts.signin')))
+    response.set_cookie('token', '', expires=0)
+
+    return response

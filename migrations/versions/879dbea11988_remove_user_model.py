@@ -1,4 +1,4 @@
-"""remove user model
+"""remove _user model
 
 Revision ID: 879dbea11988
 Revises: b62b221481ea

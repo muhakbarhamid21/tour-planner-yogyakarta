@@ -6,7 +6,7 @@ class AuthServices:
 
     @staticmethod
     def register_user(username, email, password):
-        """Registrasi user baru"""
+        """Registrasi _user baru"""
         # Cek apakah username atau email sudah terdaftar
         user = User.query.filter((User.username == username) | (User.email == email)).first()
         if user:
@@ -15,7 +15,7 @@ class AuthServices:
         # Hash password sebelum disimpan
         hashed_password = generate_password_hash(password, method='sha256')
 
-        # Buat user baru dan simpan ke database
+        # Buat _user baru dan simpan ke database
         new_user = User(username=username, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
@@ -24,8 +24,8 @@ class AuthServices:
 
     @staticmethod
     def login_user(username, password):
-        """Login user"""
-        # Cari user berdasarkan username
+        """Login _user"""
+        # Cari _user berdasarkan username
         user = User.query.filter_by(username=username).first()
         print(user, username, password)
         if not user:
@@ -38,6 +38,12 @@ class AuthServices:
         user_data = {
             "username": user.username,
             "email": user.email,
-            "is_admin": user.is_admin
+            "is_admin": user.is_admin,
+            "fullname": user.fullname
         }
         return True, "Login Successfully", user_data
+
+    @staticmethod
+    def get_profile():
+        """Getting profile"""
+        return {}

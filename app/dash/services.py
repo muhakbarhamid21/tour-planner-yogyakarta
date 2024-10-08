@@ -9,7 +9,7 @@ class AuthService:
         if User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first():
             return False, "Username or Email Already Exists"
 
-        user = User(username=username, email=email)
+        user = User(username=username, email=email, is_admin=is_admin)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()

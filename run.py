@@ -1,15 +1,13 @@
 from core.database import db, migrate
 from flask import Flask
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 
 from app.dash.routes import dash_bp
 from app.demo.routes import demo_bp
 from app.home.routes import home_bp
-from app.admin.routes import admin_bp
-from app.user.routes import user_bp
+from app._admin.routes import admin_bp
+from app._user.routes import user_bp
 from app.authentication.routes import accounts_bp
-from app.guest.routes import guest_bp
+from app._guest.routes import guest_bp
 
 import os
 
@@ -27,8 +25,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # init model
-
     with app.app_context():
 
         # Register Blueprints
@@ -42,7 +38,3 @@ def create_app():
         app.register_blueprint(admin_bp)
 
     return app
-
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
