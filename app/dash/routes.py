@@ -7,12 +7,12 @@ dash_bp = Blueprint('dash', __name__, root_path="/dashboard")
 """
 Note of menus
 
--- admin
-> manage user
-> manage admin
-> dashboard admin
+-- _admin
+> manage _user
+> manage _admin
+> dashboard _admin
 
--- user
+-- _user
 > manage tourism (alternative)
 
 -- guess
@@ -25,7 +25,7 @@ Note of menus
 
 
 @dash_bp.route('/dashboard', methods=['GET'])
-def get_dashboard():
+def dashboard():
     token = request.cookies.get('token')
 
     data = {}

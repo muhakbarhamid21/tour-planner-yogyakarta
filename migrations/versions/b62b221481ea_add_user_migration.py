@@ -1,4 +1,4 @@
-"""Add user migration
+"""Add _user migration
 
 Revision ID: b62b221481ea
 Revises: 
