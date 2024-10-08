@@ -23,14 +23,12 @@ Note of menus
 > analysis
 > results
 """
-
+from flask import g
 
 @dash_bp.route('/dashboard', methods=['GET'])
 @is_authenticated
 def dashboard():
     token = request.cookies.get('token')
-
     data = {}
-
     cookies_data = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=['HS256'])
     return render_template("dash/index.html", data=data)
