@@ -41,7 +41,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Edit Parameter</h5>
+            <h5>Edit Criteria</h5>
           </div>
           <div class="card-body">
             <form>
@@ -50,7 +50,8 @@
                 <div class="col-sm-10 mb-3">
                   <select
                     class="form-control bordered-dropdown"
-                    id="type-of-recreations"
+                    id="parameter"
+                    disabled
                   >
                     <option value="" selected disabled hidden>-</option>
                     <option>Distance (C1)</option>
@@ -65,10 +66,7 @@
               <div class="form-group row">
                 <label class="col-form-label col-sm-2">Criteria</label>
                 <div class="col-sm-10 mb-3">
-                  <select
-                    class="form-control bordered-dropdown"
-                    id="type-of-recreations"
-                  >
+                  <select class="form-control bordered-dropdown" id="criteria">
                     <option value="" selected disabled hidden>-</option>
                     <option>Cost</option>
                     <option>Benefit</option>
@@ -146,7 +144,7 @@
                   </tr>
                   <tr>
                     <td class="text-center">5</td>
-                    <td class="text-center">Facility</td>
+                    <td class="text-center">Facility (C4)</td>
                     <td class="text-center">Benefit</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm">
@@ -170,4 +168,6 @@
 {%endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="/static/assets/js/plugins/edit-criteria.js"></script>
+{% endblock javascripts %}
