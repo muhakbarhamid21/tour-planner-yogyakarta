@@ -6,7 +6,7 @@
     <a class="mobile-menu" id="mobile-collapse" href="#"><span></span></a>
     <a href="#" class="b-brand">
       <!-- ========   change your logo hear   ============ -->
-      <img src="/static/assets/images/logo.png" alt="" class="logo"/>
+      <img src="/static/assets/images/logo.png" alt="" class="logo" />
       <img
         src="/static/assets/images/logo-icon.png"
         alt=""
@@ -32,26 +32,21 @@
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
-      <li>
-        <div class="dropdown drp-user">
-          <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-            Welcome, Name
-          </a>
-          <div class="dropdown-menu dropdown-menu-end profile-notification">
-            <div class="pro-head">
-              <span>Nama yang signin</span>
-            </div>
-            <ul class="pro-body">
-              <li>
-                <form action="{{ url_for('accounts.signout') }}" method="post" style="display: inline;">
-                  <button type="submit" class="dropdown-item">
-                    <i class="feather icon-lock"></i> Logout
-                  </button>
-                </form>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <li class="nav-item">
+        <span class="navbar-text" style="color: white"
+          >Welcome, {{ fullname }}</span
+        >
+      </li>
+      <li class="nav-item">
+        <form
+          action="{{ url_for('accounts.signout') }}"
+          method="post"
+          style="display: inline"
+        >
+          <button type="submit" class="btn btn-danger ms-3">
+            <i class="fas fa-sign-out-alt" style="margin-right: 6px"></i>Signout
+          </button>
+        </form>
       </li>
     </ul>
   </div>
