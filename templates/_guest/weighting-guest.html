@@ -74,93 +74,116 @@
             <h5>Weighting</h5>
           </div>
           <div class="card-body">
-            <form>
-              <div class="form-group row">
-                <label for="distance" class="col-form-label col-sm-2"
-                  >Distance (C1)</label
-                >
-                <div class="col-sm-10 mb-3">
-                  <select class="form-control bordered-dropdown" id="distance">
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Very Low</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
-                  </select>
-                </div>
-              </div>
+            <form id="weightingForm">
+              <p style="color: grey">
+                *Ensure that the total weighting for (C<sub>1</sub>),
+                (C<sub>2</sub>), (C<sub>3</sub>), and (C<sub>4</sub>) is exactly
+                100.
+              </p>
+              <p style="color: grey">
+                *The total for (C<sub>3.1</sub>) Star and (C<sub>3.2</sub>)
+                Comment should also be exactly 100.
+              </p>
 
+              <!---->
               <div class="form-group row">
                 <label for="entry-price" class="col-form-label col-sm-2"
-                  >Entry Price (C2)</label
+                  >(C<sub>1</sub>) Distance</label
                 >
                 <div class="col-sm-10 mb-3">
-                  <select
-                    class="form-control bordered-dropdown"
-                    id="entry-price"
-                  >
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Very Low</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
-                  </select>
+                  <input
+                    type="text"
+                    id="distance"
+                    class="form-control"
+                    placeholder=""
+                  />
                 </div>
               </div>
-
+              <!---->
+              <div class="form-group row">
+                <label for="entry-price" class="col-form-label col-sm-2"
+                  >(C<sub>2</sub>) Entry Price</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="entryPrice"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
               <div class="form-group row">
                 <label for="star" class="col-form-label col-sm-2"
-                  >Rating (C3) - Star (C3.1)</label
+                  >(C<sub>3</sub>) Rating</label
                 >
                 <div class="col-sm-10 mb-3">
-                  <select class="form-control bordered-dropdown" id="star">
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Very Low</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
-                  </select>
+                  <input
+                    type="text"
+                    id="rating"
+                    class="form-control"
+                    placeholder=""
+                  />
                 </div>
               </div>
-
+              <!---->
               <div class="form-group row">
-                <label for="comment" class="col-form-label col-sm-2"
-                  >Rating (C3) - Comment (C3.2)</label
+                <label
+                  for="star"
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >(C<sub>3.1</sub>) Star</label
                 >
                 <div class="col-sm-10 mb-3">
-                  <select class="form-control bordered-dropdown" id="comment">
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Very Low</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
-                  </select>
+                  <input
+                    type="text"
+                    id="star"
+                    class="form-control"
+                    placeholder=""
+                  />
                 </div>
               </div>
-
+              <!---->
+              <div class="form-group row">
+                <label
+                  for="comment"
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >(C<sub>3.2</sub>) Comment</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="comment"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
               <div class="form-group row">
                 <label for="facility" class="col-form-label col-sm-2"
-                  >Facility (C4)</label
+                  >(C<sub>4</sub>) Facility</label
                 >
                 <div class="col-sm-10 mb-3">
-                  <select class="form-control bordered-dropdown" id="facility">
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Very Low</option>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
-                  </select>
+                  <input
+                    type="text"
+                    id="facility"
+                    class="form-control"
+                    placeholder=""
+                  />
                 </div>
+              </div>
+              <!-- Error message -->
+              <div id="errorMessage" style="color: red; display: none">
+                Total weighting must be 100!
               </div>
               <button
                 type="submit"
                 class="btn btn-primary"
                 style="margin-top: 20px"
+                id="weightButton"
               >
                 Analysis
               </button>
@@ -168,7 +191,6 @@
           </div>
         </div>
       </div>
-      <!-- Card -->
     </div>
     <!-- [ Main Content ] end -->
   </div>
