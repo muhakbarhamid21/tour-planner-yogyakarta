@@ -2,9 +2,11 @@ import os
 
 from .services import AuthServices
 
-from flask import Blueprint, request, jsonify, render_template, redirect, url_for, make_response
+from flask import Blueprint, request, render_template, redirect, url_for, make_response
 import jwt
 import datetime
+from middleware.auth import is_authenticated
+from utils.jwt import decode_jwt
 
 
 accounts_bp = Blueprint('accounts', __name__)
@@ -61,3 +63,9 @@ def signout():
     response.set_cookie('token', '', expires=0)
 
     return response
+
+@accounts_bp.route('/accounts/profile', methods=["GET"])
+@is_authenticated
+def get_profile():
+    data = decode_jwt()
+    return data

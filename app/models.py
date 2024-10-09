@@ -24,40 +24,50 @@ class User(db.Model):
         return check_password_hash(self.password, password)
 
 
-# class Attraction(db.Model):
-#     __tablename__ = 'tourist_attractions'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     distance = db.Column(db.Float, nullable=False)
-#     entry_price = db.Column(db.Float, nullable=False)
-#     facility = db.Column(db.Float, nullable=False)
-#     stars = db.Column(db.Float, nullable=False)
-#     reviews = db.Column(db.Integer, nullable=False)
-#
-#     user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)
-#
-#     # Relationship
-#     user = db.relationship('AccountUsers', backref=db.backref('tourist_attractions', lazy=True))
-#
-#
-# class Weight(db.Model):
-#     __tablename__ = 'dss_weight'
-#     id = db.Column(db.Integer, primary_key=True)
-#     weight = db.Column(db.Float, nullable=False)
-#     attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.id'), nullable=False)
-#
-#     # Relationship
-#     attraction = db.relationship('Attraction', backref=db.backref('bobots', lazy=True))
-#     sub_parameters = db.relationship('SubParameter', backref='bobot', cascade="all, delete-orphan")
-#
-#
-# class SubParameter(db.Model):
-#     __tablename__ = 'sub_parameters'
-#     id = db.Column(db.Integer, primary_key=True)
-#     bobot_id = db.Column(db.Integer, db.ForeignKey('bobot.id'), nullable=False)
-#     name = db.Column(db.String(100), nullable=False)
-#     value = db.Column(db.Float, nullable=False)
-#     description = db.Column(db.String(255), nullable=True)
-#
-#     # Additional attribute for Rating sub-parameter
-#     is_rating = db.Column(db.Boolean, nullable=False, default=False)
+class AttractionCategory(db.Model):
+    __tablename__ = 'tourist_attraction_categories'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+    user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)
+
+    # Relationship
+    # user = db.relationship('account_users', backref=db.backref('tourist_attraction_categories', lazy=True))
+
+
+class Attraction(db.Model):
+    __tablename__ = 'tourist_attractions'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    lon = db.Column(db.Float, nullable=False)
+    entry_price = db.Column(db.Float, nullable=False)
+    facility = db.Column(db.Float, nullable=False)
+    stars = db.Column(db.Float, nullable=False)
+    reviews = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+    user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('tourist_attraction_categories.id'), nullable=True)
+
+    # Relationship
+    # user = db.relationship('account_users', backref=db.backref('tourist_attractions', lazy=True))
+    # category = db.relationship('tourist_attraction_categories', backref=db.backref('tourist_attractions', lazy=True))
+
+
+class Weight(db.Model):
+    __tablename__ = 'dss_weights'
+    id = db.Column(db.Integer, primary_key=True)
+    distance = db.Column(db.Float, nullable=False)
+    entry_price = db.Column(db.Float, nullable=False)
+    facility = db.Column(db.Float, nullable=False)
+    rating = db.Column(db.Float, nullable=False)
+    stars = db.Column(db.Float, nullable=False)
+    reviews = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+    user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)
+
+    # Relationship
+    # user = db.relationship('account_users', backref=db.backref('dss_weights', lazy=True))

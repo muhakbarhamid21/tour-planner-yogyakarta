@@ -1,6 +1,8 @@
+import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User
 from core.database import db
+from middleware.auth import is_authenticated
 
 class AuthServices:
 
@@ -43,7 +45,3 @@ class AuthServices:
         }
         return True, "Login Successfully", user_data
 
-    @staticmethod
-    def get_profile():
-        """Getting profile"""
-        return {}

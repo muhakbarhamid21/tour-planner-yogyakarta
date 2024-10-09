@@ -1,0 +1,111 @@
+<!-- Base -->
+{% extends "layouts/base.html" %}
+
+<!-- Title -->
+{% block title %} Tourist Attractions - User {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- Start Contect -->
+
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Tourist Attractions</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/user/dashboard-user"
+                  ><i class="feather icon-home"></i
+                ></a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="#">Tourist Attractions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="row">
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <select class="primary form-control bordered-dropdown" id="type-of-recreations">
+              <option value="" selected="" disabled="" hidden="">-</option>
+              <option>Culture &amp; History</option>
+              <option>Education &amp; Learning</option>
+              <option>Nature &amp; Recreation</option>
+              <option>Adventure</option>
+            </select>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Category
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions %}
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">{{ attraction.distance | round(2) }}</td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+  </div>
+</div>
+
+<!-- End Contect -->
+
+{%endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
