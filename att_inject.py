@@ -6,7 +6,7 @@ username = 'lecture2024'
 password = 'Ojolali123'
 host = 'lecture-dss-db.mekarsa.com'
 port = '54321'
-database = 'tourism'
+database = 'tourist'
 table_name = 'tourist_attractions'
 
 # Membuat koneksi psycopg2

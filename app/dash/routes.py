@@ -14,7 +14,7 @@ Note of menus
 > dashboard _admin
 
 -- _user
-> manage tourism (alternative)
+> manage tourist (alternative)
 
 -- guess
 > dashboard 
