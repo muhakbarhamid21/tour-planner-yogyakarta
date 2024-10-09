@@ -1,0 +1,216 @@
+<!-- Base -->
+{% extends "layouts/base.html" %}
+
+<!-- Title -->
+{% block title %} Weighting - User {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- Start Contect -->
+
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Weighting</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/user/dashboard-user"
+                  ><i class="feather icon-home"></i
+                ></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Weighting</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="row">
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Type of Attractions</h5>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row">
+                <label for="type-of-recreations" class="col-form-label col-sm-2"
+                  >Type of Attractions</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="type-of-recreations"
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    <option>Culture & History</option>
+                    <option>Education & Learning</option>
+                    <option>Nature & Recreation</option>
+                    <option>Adventure</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Weighting</h5>
+          </div>
+          <div class="card-body">
+            <form id="weightingForm">
+              <!---->
+              <p style="color: grey">
+                *Ensure that the total weighting for (C<sub>1</sub>),
+                (C<sub>2</sub>), (C<sub>3</sub>), and (C<sub>4</sub>) is exactly
+                100.
+              </p>
+              <p style="color: grey">
+                *The total for (C<sub>3.1</sub>) and (C<sub>3.2</sub>) should
+                also be exactly 100.
+              </p>
+              <!---->
+              <div class="form-group row">
+                <label for="entry-price" class="col-form-label col-sm-2"
+                  >(C<sub>1</sub>) Distance</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="distance"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
+              <div class="form-group row">
+                <label for="entry-price" class="col-form-label col-sm-2"
+                  >(C<sub>2</sub>) Entry Price</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="entryPrice"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
+              <div class="form-group row">
+                <label for="star" class="col-form-label col-sm-2"
+                  >(C<sub>3</sub>) Rating</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="rating"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
+              <div class="form-group row">
+                <label
+                  for="star"
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >(C<sub>3.1</sub>) Star</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="star"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
+              <div class="form-group row">
+                <label
+                  for="comment"
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >(C<sub>3.2</sub>) Comment</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="comment"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!---->
+              <div class="form-group row">
+                <label for="facility" class="col-form-label col-sm-2"
+                  >(C<sub>4</sub>) Facility</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    id="facility"
+                    class="form-control"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <!-- Error message -->
+              <div id="errorMessage" style="color: red; display: none">
+                Total weighting must be 100!
+              </div>
+              <div class="col-2">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  style="margin-top: 20px"
+                  id="weightButton"
+                >
+                  Test
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="margin-top: 20px"
+                  id="weightButton"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+  </div>
+</div>
+
+<!-- End Contect -->
+
+{%endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+  <script src="/static/assets/js/plugins/weight-validation.js"></script>
+  <script src="./script.js"></script>
+{% endblock javascripts %}

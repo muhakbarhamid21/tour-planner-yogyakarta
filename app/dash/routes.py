@@ -39,4 +39,4 @@ def dashboard():
     
     cookies_data = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=['HS256'])
     
-    return render_template("dash/index.html", **data)
+    return render_template("dash/index.html", data=data)

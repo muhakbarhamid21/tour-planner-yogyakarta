@@ -5,6 +5,8 @@ from app.dash.routes import dash_bp
 from app.demo.routes import demo_bp
 from app.home.routes import home_bp
 from app.tourist.routes import tourist_bp
+from app.dss.routes import dss_bp
+
 from app._admin.routes import admin_bp
 from app._user.routes import user_bp
 from app.authentication.routes import accounts_bp
@@ -32,6 +34,7 @@ def create_app():
         app.register_blueprint(dash_bp)
         app.register_blueprint(tourist_bp)
         app.register_blueprint(demo_bp)
+        app.register_blueprint(dss_bp)
 
         app.register_blueprint(home_bp)
         app.register_blueprint(accounts_bp)
