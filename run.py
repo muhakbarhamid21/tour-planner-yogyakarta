@@ -1,4 +1,5 @@
 from core.database import db, migrate
+from dotenv import load_dotenv
 from flask import Flask
 
 from app.dash.routes import dash_bp
@@ -18,6 +19,7 @@ import os
 template_dir = os.path.join('templates')
 static_dir = os.path.join('static')
 
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 def create_app():
     # Initialize the Flask app with the specified template and static folder paths
