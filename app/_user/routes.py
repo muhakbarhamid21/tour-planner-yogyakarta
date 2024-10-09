@@ -1,12 +1,23 @@
 # Define routes for User pages
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+
+from app._guest.services import get_attraction_counts
 
 user_bp = Blueprint('_user', __name__)
 
 @user_bp.route('/user/dashboard-user')
 def dashboard_user():
-    return render_template('_user/dashboard-user.html')
+    token = request.cookies.get('token')
+    
+    # Ambil jumlah objek wisata untuk setiap kategori
+    category_counts = get_attraction_counts()
+
+    data = {
+        "category_counts": category_counts  # Menambahkan hasil hitungan ke template
+    }
+    
+    return render_template('_user/dashboard-user.html', **data)
 
 @user_bp.route('/user/tourist-attractions-user')
 def tourist_attractions_user():
