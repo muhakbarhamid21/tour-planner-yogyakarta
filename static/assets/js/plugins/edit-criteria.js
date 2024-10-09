@@ -3,16 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   editButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Mendapatkan elemen row (baris tabel) terdekat dari tombol yang diklik
-      const row = this.closest("tr");
+      // Mengambil data dari atribut data-parameter dan data-criteria pada tombol
+      const parameter = button.getAttribute("data-parameter");
+      const criteria = button.getAttribute("data-criteria");
 
-      // Mengambil data dari baris tabel
-      const parameter = row.children[1].innerText.trim(); // Parameter (kolom ke-2)
-      const criteria = row.children[2].innerText.trim(); // Criteria (kolom ke-3)
+      console.log(parameter, criteria)
 
       // Memasukkan data ke dalam form
       document.getElementById("parameter").value = parameter; // Mengisi Parameter
       document.getElementById("criteria").value = criteria; // Mengisi Criteria
+      document.getElementById("criteria_id").value = criteria; // Mengisi Criteria
     });
   });
 });

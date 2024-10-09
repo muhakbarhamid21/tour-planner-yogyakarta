@@ -1,7 +1,10 @@
+from app.tourist.services import AttractionsService
 from middleware.auth import is_authenticated
 from utils.jwt import decode_jwt
 from sqlalchemy import text
 from core.database import db
+from flask import flash, request
+from app.models import Weight, Criteria
 
 
 class DssService:
@@ -9,7 +12,95 @@ class DssService:
     def __init__(self):
         pass
 
+    @staticmethod
+    def get_topsis(category_id):
+        if category_id != 'all':
+            attraction = AttractionsService.get_attractions(category_id)
+        else:
+            attraction = AttractionsService.get_attractions()
 
+        return attraction
+
+    @staticmethod
+    def get_criteria():
+        sql_query = text("""SELECT * FROM dss_criteria""")
+        results = db.session.execute(sql_query).fetchall()
+
+        criteria = [{
+            "id": row.id,
+            "name": row.name,
+            "criteria": row.criteria,
+            "key": row.key
+        } for row in results]
+
+        db.session.close()
+
+        return criteria
+
+    @staticmethod
+    def update_criteria():
+        criteria_id = request.form.get('criteria_id')
+        criteria = request.form['criteria']
+
+        data = Weight.query.filter_by(id=criteria_id).first()
+
+        if data:
+            # Jika data ada, lakukan update
+            data.criteria = criteria
+            flash('Weights updated successfully!')
+
+        # Commit perubahan ke database
+        db.session.commit()
+        db.session.close()
+
+        return True
+
+    @staticmethod
+    def update_weight():
+        # Simulasi mendapatkan user_id dari session atau form
+        distance = request.form['distance']
+        entry_price = request.form['entry_price']
+        rating = request.form['rating']
+        stars = request.form['stars']
+        reviews = request.form['reviews']
+        facility = request.form['facility']
+
+        jwt_data = decode_jwt()
+
+        # Cari data Weight berdasarkan user_id
+        weight = Weight.query.filter_by(user_id=jwt_data.get("id")).first()
+
+        if weight:
+            # Jika data ada, lakukan update
+            weight.distance = distance
+            weight.entry_price = entry_price
+            weight.rating = rating
+            weight.stars = stars
+            weight.reviews = reviews
+            weight.facility = facility
+            flash('Weights updated successfully!')
+        else:
+            # Jika data tidak ada, buat data baru
+            new_weight = Weight(
+                user_id=jwt_data.get("id"),
+                distance=distance,
+                entry_price=entry_price,
+                rating=rating,
+                stars=stars,
+                reviews=reviews,
+                facility=facility
+            )
+            db.session.add(new_weight)
+            flash('Weights created successfully!')
+
+        # Commit perubahan ke database
+        db.session.commit()
+        db.session.close()
+
+        return True
+
+
+    @staticmethod
     @is_authenticated
     def get_weight():
         jwt_data = decode_jwt()
@@ -21,8 +112,7 @@ class DssService:
             facility,
             rating,
             stars,
-            reviews,
-            attraction_type
+            reviews
         FROM dss_weights WHERE user_id = {jwt_data['id']}""")
         result = db.session.execute(query).fetchone()
 
@@ -32,7 +122,6 @@ class DssService:
                 "distance": result[1],
                 "entry_price": result[2],
                 "facility": result[3],
-                "attraction_type": result[7],
                 "rating": {
                     "value": result[4],
                     "stars": result[5],

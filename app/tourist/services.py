@@ -22,29 +22,47 @@ class AttractionsService:
 
         return categories
 
+    @staticmethod
+    def get_attractions(category_id = None):
+        user_lat = -7.7669578
+        user_lon = 110.3714613
 
-    def get_attractions():
-        # Lokasi referensi (contoh: lokasi pengguna saat ini)
-        user_lat = -7.797068  # Ganti dengan latitude pengguna
-        user_lon = 110.370529  # Ganti dengan longitude pengguna
-
-        # Menjalankan query SQL langsung menggunakan connection object dari db
-        sql_query = text("""SELECT
-            ta.id, 
-            ta.name, 
-            ta.entry_price, 
-            ta.facility,
-            ta.stars,
-            ta.reviews,
-            ta.lat,
-            ta.lon,
-            ta.created_at,
-            ta.user_id,
-            tac.id AS Category_id,
-            tac.name AS category
-        FROM tourist_attractions ta 
-        JOIN tourist_attraction_categories tac 
-        ON ta.category_id = tac.id""")
+        if category_id:
+            # filter by id
+            sql_query = text(f"""SELECT
+                ta.id, 
+                ta.name, 
+                ta.entry_price, 
+                ta.facility,
+                ta.stars,
+                ta.reviews,
+                ta.lat,
+                ta.lon,
+                ta.created_at,
+                ta.user_id,
+                tac.id AS Category_id,
+                tac.name AS category
+            FROM tourist_attractions ta 
+            JOIN tourist_attraction_categories tac 
+            ON ta.category_id = tac.id
+            WHERE ta.category_id = {category_id}""")
+        else:
+            sql_query = text("""SELECT
+                ta.id, 
+                ta.name, 
+                ta.entry_price, 
+                ta.facility,
+                ta.stars,
+                ta.reviews,
+                ta.lat,
+                ta.lon,
+                ta.created_at,
+                ta.user_id,
+                tac.id AS Category_id,
+                tac.name AS category
+            FROM tourist_attractions ta 
+            JOIN tourist_attraction_categories tac 
+            ON ta.category_id = tac.id""")
 
         # Eksekusi query SQL
         result = db.session.execute(sql_query).fetchall()
