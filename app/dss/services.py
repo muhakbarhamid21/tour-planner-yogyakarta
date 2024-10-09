@@ -39,10 +39,10 @@ class DssService:
 
     @staticmethod
     def update_criteria():
-        criteria_id = request.form.get('criteria_id')
+        criteria_id = request.form['criteria_id']
         criteria = request.form['criteria']
 
-        data = Weight.query.filter_by(id=criteria_id).first()
+        data = Criteria.query.filter_by(id=criteria_id).first()
 
         if data:
             # Jika data ada, lakukan update

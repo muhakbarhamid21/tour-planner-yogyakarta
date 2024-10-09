@@ -74,7 +74,8 @@ def criteria():
     }
 
     if request.method == "POST":
+        # print(request.form)
         DssService.update_criteria()
-        return render_template("dss/criteria.html", **data)
+        return redirect(url_for("dss.criteria"))
 
     return render_template("dss/criteria.html", **data)
