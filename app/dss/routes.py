@@ -5,6 +5,7 @@ from app.tourist.services import AttractionsService
 from middleware.auth import is_authenticated
 from flask import render_template, request, url_for, redirect
 from flask.blueprints import Blueprint
+from utils.topsis import TOPSISWithSubCriteria
 
 dss_bp = Blueprint('dss', __name__, root_path="/dss")
 
@@ -31,6 +32,9 @@ def weight():
 def analysis():
     categories = AttractionsService.get_attraction_categories()
     weight = DssService.get_weight()
+
+    topsis_model = TOPSISWithSubCriteria(data, sub_criteria_weights, criteria_weights, criteria_types)
+
     topsis = {
         "rank": [],
     }
