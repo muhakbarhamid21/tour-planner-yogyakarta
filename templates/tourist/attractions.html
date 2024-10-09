@@ -84,7 +84,7 @@
                   <tr>
                     <td class="text-center">{{ loop.index }}</td>
                     <td class="text-center">{{ attraction.name }}</td>
-                    <td class="text-center">{{ attraction.lat, attraction.lon }}</td>
+                    <td class="text-center">{{ attraction.distance | round(2) }}</td>
                     <td class="text-center">{{ attraction.entry_price }}</td>
                     <td class="text-center">{{ attraction.stars }}</td>
                     <td class="text-center">{{ attraction.reviews }}</td>

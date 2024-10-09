@@ -1,8 +1,13 @@
 from app.models import Attraction
 from core.database import db
 from sqlalchemy import text
+from utils.location import haversine
 
 def get_attractions():
+    # Lokasi referensi (contoh: lokasi pengguna saat ini)
+    user_lat = -7.797068  # Ganti dengan latitude pengguna
+    user_lon = 110.370529  # Ganti dengan longitude pengguna
+
     # Menjalankan query SQL langsung menggunakan connection object dari db
     sql_query = text("""SELECT
         ta.id, 
@@ -35,6 +40,12 @@ def get_attractions():
             "reviews": row.reviews,
             "created_at": row.created_at,
             "user_id": row.user_id,
+            # "distances": haversine(
+            #     user_lon,
+            #     user_lat,
+            #     row.lon,
+            #     row.lat
+            # ),
             "lat": row.lat,
             "lon": row.lon,
             "category": {
@@ -44,5 +55,9 @@ def get_attractions():
         }
         for row in result
     ]
+
+    # Menghitung jarak untuk setiap objek attraction
+    for attraction in attractions:
+        attraction['distance'] = haversine(user_lon, user_lat, attraction['lon'], attraction['lat'])
 
     return attractions
