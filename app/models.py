@@ -67,6 +67,7 @@ class Weight(db.Model):
     reviews = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    attraction_type = db.Column(db.Integer, db.ForeignKey('tourist_attraction_categories.id'), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)
 
     # Relationship

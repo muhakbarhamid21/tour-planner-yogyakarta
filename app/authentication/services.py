@@ -38,6 +38,7 @@ class AuthServices:
             return False, "Invalid Credentials", {}
 
         user_data = {
+            "id": user.id,
             "username": user.username,
             "email": user.email,
             "is_admin": user.is_admin,

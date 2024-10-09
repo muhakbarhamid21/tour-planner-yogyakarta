@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from flask import Flask
 
 from app.dash.routes import dash_bp
-from app.demo.routes import demo_bp
 from app.home.routes import home_bp
 from app.tourist.routes import tourist_bp
 from app.dss.routes import dss_bp
@@ -35,7 +34,6 @@ def create_app():
         # Register Blueprints
         app.register_blueprint(dash_bp)
         app.register_blueprint(tourist_bp)
-        app.register_blueprint(demo_bp)
         app.register_blueprint(dss_bp)
 
         app.register_blueprint(home_bp)

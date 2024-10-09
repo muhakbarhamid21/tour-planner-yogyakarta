@@ -38,42 +38,43 @@
     <!-- [ Main Content ] start -->
     <div class="row">
       <!-- Card -->
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Type of Attractions</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group row">
-                <label for="type-of-recreations" class="col-form-label col-sm-2"
-                  >Type of Attractions</label
-                >
-                <div class="col-sm-10 mb-3">
-                  <select
-                    class="form-control bordered-dropdown"
-                    id="type-of-recreations"
-                  >
-                    <option value="" selected disabled hidden>-</option>
-                    <option>Culture & History</option>
-                    <option>Education & Learning</option>
-                    <option>Nature & Recreation</option>
-                    <option>Adventure</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+{#      <div class="col-sm-12">#}
+{#        <div class="card">#}
+{#          <div class="card-header">#}
+{#            <h5>Type of Attractions</h5>#}
+{#          </div>#}
+{#          <div class="card-body">#}
+{#            <form action="/dss/update-weight" method="post">#}
+{#              <div class="form-group row">#}
+{#                <label for="type-of-recreations" class="col-form-label col-sm-2"#}
+{#                  >Type of Attractions</label#}
+{#                >#}
+{#                <div class="col-sm-10 mb-3">#}
+{#                  <select#}
+{#                    class="form-control bordered-dropdown"#}
+{#                    id="category"#}
+{#                  >#}
+{#                    {% for category in categories %}#}
+{#                      <option value="{{ category.id }}" {% if category.id == weight.attraction_type|int %}selected{% endif %} >#}
+{#                        {{ category.name }}#}
+{#                      </option>#}
+{#                    {% endfor %}#}
+{#                  </select>#}
+{#                </div>#}
+{#              </div>#}
+{#            </form>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
             <h5>Weighting</h5>
           </div>
-          <div class="card-body">
-            <form id="weightingForm">
+          <form action="/dss/weight" method="POST">
+            <div class="card-body">
               <!---->
               <p style="color: grey">
                 *Ensure that the total weighting for (C<sub>1</sub>),
@@ -93,6 +94,8 @@
                   <input
                     type="text"
                     id="distance"
+                    name="distance"
+                    value="{{  weight.distance }}"
                     class="form-control"
                     placeholder=""
                   />
@@ -107,7 +110,9 @@
                   <input
                     type="text"
                     id="entryPrice"
+                    name="entry_price"
                     class="form-control"
+                    value="{{ weight.entry_price }}"
                     placeholder=""
                   />
                 </div>
@@ -121,7 +126,9 @@
                   <input
                     type="text"
                     id="rating"
+                    name="rating"
                     class="form-control"
+                    value="{{ weight.rating.value }}"
                     placeholder=""
                   />
                 </div>
@@ -138,7 +145,9 @@
                   <input
                     type="text"
                     id="star"
+                    name="stars"
                     class="form-control"
+                    value="{{ weight.rating.stars }}"
                     placeholder=""
                   />
                 </div>
@@ -155,7 +164,9 @@
                   <input
                     type="text"
                     id="comment"
+                    name="reviews"
                     class="form-control"
+                    value="{{ weight.rating.reviews }}"
                     placeholder=""
                   />
                 </div>
@@ -169,7 +180,9 @@
                   <input
                     type="text"
                     id="facility"
+                    name="facility"
                     class="form-control"
+                    value="{{ weight.facility }}"
                     placeholder=""
                   />
                 </div>
@@ -178,15 +191,15 @@
               <div id="errorMessage" style="color: red; display: none">
                 Total weighting must be 100!
               </div>
-              <div class="col-2">
-                <button
-                  type="submit"
-                  class="btn btn-success"
-                  style="margin-top: 20px"
-                  id="weightButton"
-                >
-                  Test
-                </button>
+{#              <div class="col-2">#}
+{#                <button#}
+{#                  type="submit"#}
+{#                  class="btn btn-success"#}
+{#                  style="margin-top: 20px"#}
+{#                  id="weightButton"#}
+{#                >#}
+{#                  Test#}
+{#                </button>#}
                 <button
                   type="submit"
                   class="btn btn-primary"
@@ -212,5 +225,4 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
   <script src="/static/assets/js/plugins/weight-validation.js"></script>
-  <script src="./script.js"></script>
 {% endblock javascripts %}
