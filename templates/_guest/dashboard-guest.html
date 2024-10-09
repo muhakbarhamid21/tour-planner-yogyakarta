@@ -5,21 +5,213 @@
 {% block title %} Dashboard - Guest {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<script
+  defer
+  id="MathJax-script"
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      packages: ["base"], // Load only essential packages
+    },
+    options: {
+      skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+      processHtmlClass: "mathjax-process", // Only process elements with this class
+    },
+    loader: { load: ["input/tex", "output/chtml"] },
+  };
+</script>
+{% endblock stylesheets %}
 
 <!-- Content -->
 {% block content %}
 
 <!-- Start Contect -->
 
-aasdajwdbnaiwudbwad<br />
-wadwadnawdfwa fawfnawiufifuwanbfwa<br />
-wafnwiuafnwaiufwafwafwa<br />
-fnwafuwan
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="row">
+      <!-- Dashboard box -->
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-blue order-card">
+          <div class="card-body bg-patern">
+            <h6 class="text-white" style="font-size: 20px; margin-bottom: 15px">
+              Culture & History
+            </h6>
+            <h2 class="text-end text-white" style="margin-bottom: 0px">
+              <i class="fas fa-building float-start"></i><span>{ 486 }</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-body bg-patern">
+            <h6 class="text-white" style="font-size: 20px; margin-bottom: 15px">
+              Education & Learning
+            </h6>
+            <h2 class="text-end text-white" style="margin-bottom: 0px">
+              <i class="fas fa-book float-start"></i><span>{ 486 }</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-yellow order-card">
+          <div class="card-body bg-patern">
+            <h6 class="text-white" style="font-size: 20px; margin-bottom: 15px">
+              Nature & Recreation
+            </h6>
+            <h2 class="text-end text-white" style="margin-bottom: 0px">
+              <i class="fas fa-tree float-start"></i><span>{ 486 }</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-red order-card">
+          <div class="card-body bg-patern">
+            <h6 class="text-white" style="font-size: 20px; margin-bottom: 15px">
+              Adventure
+            </h6>
+            <h2 class="text-end text-white" style="margin-bottom: 0px">
+              <i class="fas fa-hiking float-start"></i><span>{ 486 }</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <!---->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Tour Recommendation Guide</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <h6>Description</h6>
+                <p>
+                  <strong>Tour Planner Yogyakarta</strong> is a web-based application that uses a Decision Support System (DSS) to help travelers choose destinations based on preferences such as distance, entrance fees, ratings, comments, and facilities. Users can input weights for each criterion according to their preferences, and the system will recommend destinations that best match their choices.
+                </p>
+                <p>
+                  This system uses the <strong>Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS)</strong> model in the DSS. TOPSIS was chosen because it offers:
+                  <ul>
+                    <li><strong>Efficiency:</strong> TOPSIS efficiently calculates the distance of each alternative (destination) from the best ideal solution (optimal destination) and the worst solution.</li>
+                    <li><strong>Accuracy:</strong> TOPSIS provides recommendations based on the solution that is closest to the user's preferences.</li>
+                    <li><strong>Simplicity:</strong> It is easy to implement in systems that require ranking or ordering of alternatives, such as selecting travel destinations.</li>
+                  </ul>
+                </p>
+              <hr />
+              <h6>Parameter</h6>
+                <p><strong>The following parameters are used to determine the best travel destinations in Tour Planner Yogyakarta:</strong></p>
+                <ul>
+                    <li>
+                        <strong>Distance (Jarak):</strong> The distance from the user’s location to the destination. 
+                        <br><em>Type: Cost - Shorter distances are preferred.</em>
+                    </li>
+                    <li>
+                        <strong>Price Entry (Harga Tiket Masuk):</strong> The entry fee required for the destination. 
+                        <br><em>Type: Cost - Lower prices are preferred.</em>
+                    </li>
+                    <li>
+                        <strong>Rating:</strong> The overall rating based on data from Google Maps. It consists of:
+                        <ul>
+                            <li><strong>Star (Bintang):</strong> A score from 1 to 5 stars based on user ratings from Google Maps.</li>
+                            <li><strong>Comment (Ulasan):</strong> Written feedback from Google Maps users about their experiences at the destination.</li>
+                        </ul>
+                        <em>Type: Benefit - Higher ratings and positive comments are preferred.</em>
+                    </li>
+                    <li>
+                        <strong>Facility (Fasilitas):</strong> The availability of essential amenities such as parking, restrooms, restaurants, and more.
+                        <br><em>Type: Benefit - Destinations with more complete facilities are preferred.</em>
+                    </li>
+                </ul>
+              <hr/>
+              <h6>Steps in TOPSIS</h6>
+                                <ol>
+                    <li><strong>Input Weights:</strong> Users provide weights for each criterion, such as distance, entry price, rating, and facility. Ensure that the total weight is 100.</li>
+                    
+                    <li><strong>Normalize Decision Matrix:</strong> Each criterion value is normalized to remove unit differences and allow for comparison between alternatives.
+                        <br>Formula: 
+                        <span class="mathjax-process">
+                            $$ r_{ij} = \frac{x_{ij}}{\sqrt{\sum_{i=1}^{m} x_{ij}^2}} $$
+                        </span>
+                        <br><strong>Explanation:</strong>
+                        - \( r_{ij} \): The normalized value for alternative \(i\) on criterion \(j\).<br>
+                        - \( x_{ij} \): The original value for alternative \(i\) on criterion \(j\).<br>
+                        - \( m \): The total number of alternatives.
+                    </li>
+                    
+                    <li><strong>Weight the Normalized Matrix:</strong> Multiply normalized values by user-provided weights to calculate the weighted matrix.
+                        <br>Formula: 
+                        <span class="mathjax-process">
+                            $$ v_{ij} = w_j \cdot r_{ij} $$
+                        </span>
+                        <br><strong>Explanation:</strong>
+                        - \( v_{ij} \): The weighted normalized value for alternative \(i\) on criterion \(j\).<br>
+                        - \( w_j \): The weight provided by the user for criterion \(j\).<br>
+                        - \( r_{ij} \): The normalized value for alternative \(i\) on criterion \(j\).
+                    </li>
+                    
+                    <li><strong>Determine Ideal Solutions:</strong> Identify the ideal positive (best) and ideal negative (worst) values for each criterion.
+                        <br>Formula:
+                        <span class="mathjax-process">
+                            $$ A_j^+ = \left\{ \max(v_{ij}) \mid j \in J_{\text{benefit}}; \min(v_{ij}) \mid j \in J_{\text{cost}} \right\} $$
+                            $$ A_j^- = \left\{ \min(v_{ij}) \mid j \in J_{\text{benefit}}; \max(v_{ij}) \mid j \in J_{\text{cost}} \right\} $$
+                        </span>
+                        <br><strong>Explanation:</strong>
+                        - \( A_j^+ \): Ideal positive solution (best value for each criterion).<br>
+                        - \( A_j^- \): Ideal negative solution (worst value for each criterion).<br>
+                        - \( J_{\text{benefit}} \): Set of criteria that are <strong>benefit</strong>-oriented (higher is better).<br>
+                        - \( J_{\text{cost}} \): Set of criteria that are <strong>cost</strong>-oriented (lower is better).
+                    </li>
+                    
+                    <li><strong>Calculate Distances:</strong> Calculate the distance of each alternative from both the ideal positive and ideal negative solutions.
+                        <br>Formula:
+                        <span class="mathjax-process">
+                            $$ D_i^+ = \sqrt{\sum_{j=1}^{n} (v_{ij} - A_j^+)^2} $$
+                            $$ D_i^- = \sqrt{\sum_{j=1}^{n} (v_{ij} - A_j^-)^2} $$
+                        </span>
+                        <br><strong>Explanation:</strong>
+                        - \( D_i^+ \): The distance between alternative \(i\) and the ideal positive solution \(A_j^+\).<br>
+                        - \( D_i^- \): The distance between alternative \(i\) and the ideal negative solution \(A_j^-\).<br>
+                        - \( v_{ij} \): The weighted normalized value for alternative \(i\) on criterion \(j\).<br>
+                        - \( A_j^+ \), \( A_j^- \): Ideal positive and negative solutions.
+                    </li>
+                    
+                    <li><strong>Compute the Relative Closeness:</strong> Calculate how close each destination is to the ideal solution, with values closer to 1 being better.
+                        <br>Formula:
+                        <span class="mathjax-process">
+                            $$ C_i^* = \frac{D_i^-}{D_i^+ + D_i^-} $$
+                        </span>
+                        <br><strong>Explanation:</strong>
+                        - \( C_i^* \): The relative closeness of alternative \(i\) to the ideal positive solution. The higher \(C_i^*\), the closer the alternative is to the ideal solution.<br>
+                        - \( D_i^+ \): Distance to the ideal positive solution.<br>
+                        - \( D_i^- \): Distance to the ideal negative solution.
+                    </li>
+                    
+                    <li><strong>Rank the Alternatives:</strong> Destinations are ranked based on the closeness to the ideal solution, with the top-ranked destinations presented as recommendations.</li>
+                </ol>
+                <p><strong>Example:</strong> After entering weights for criteria, the system calculates the best destinations based on your preferences and displays the top recommendations.</p>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- End Contect -->
 
 {%endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="/static/assets/js/plugins/lazyload.js"></script>
+{% endblock javascripts %}
