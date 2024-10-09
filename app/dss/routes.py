@@ -11,3 +11,9 @@ dss_bp = Blueprint('dss', __name__, root_path="/dss")
 def weight():
     data = {}
     return render_template("dss/weight/index.html", **data)
+
+@dss_bp.route('/dss/analysis', methods=['GET', 'POST'])
+@is_authenticated
+def analysis():
+    data = {}
+    return render_template("dss/analysis/index.html", **data)
