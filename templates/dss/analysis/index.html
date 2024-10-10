@@ -335,7 +335,9 @@
                     </th>
                   </tr>
                 </thead>
+                {% if topsis.solution %}
                 <tbody>
+
                   <tr>
                     <td>Postitif Ideal Solution (A<sup>+</sup>)</td>
                     <td>{{ topsis.solution.ideal_best[0] }}</td>
@@ -351,6 +353,7 @@
                     <td>{{ topsis.solution.ideal_worst[3] }}</td>
                   </tr>
                 </tbody>
+                {% endif %}
               </table>
             </div>
           </div>
@@ -384,6 +387,7 @@
                     </th>
                   </tr>
                 </thead>
+                {% if topsis.distance %}
                 <tbody>
                   <tr>
                     <td>Distance to Ideal Postif</td>
@@ -400,6 +404,7 @@
                     <td>{{ topsis.distance.dist_ideal_worst[3] }}</td>
                   </tr>
                 </tbody>
+                {% endif %}
               </table>
             </div>
           </div>
