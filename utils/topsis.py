@@ -25,16 +25,19 @@ class TOPSISWithSubCriteria:
                     aggregated_score = alt[criterion]  # No sub-criteria, single value
                 row.append(aggregated_score)
             aggregated_data.append(row)
+            self.aggregated_data = np.array(aggregated_data)
         return np.array(aggregated_data)
 
     def normalize_matrix(self, aggregated_data):
         """Normalize the decision matrix."""
         norm_data = aggregated_data / np.sqrt((aggregated_data ** 2).sum(axis=0))
+        self.norm_data = norm_data
         return norm_data
 
     def weighted_normalized_matrix(self, norm_data):
         """Calculate the weighted normalized decision matrix."""
         weighted_data = norm_data * self.criteria_weights
+        self.weighted_data = weighted_data
         return weighted_data
 
     def ideal_solutions(self, weighted_data):
@@ -60,8 +63,15 @@ class TOPSISWithSubCriteria:
         norm_data = self.normalize_matrix(aggregated_data)
         weighted_data = self.weighted_normalized_matrix(norm_data)
         ideal_best, ideal_worst = self.ideal_solutions(weighted_data)
+        self.ideal_best = ideal_best
+        self.ideal_worst = ideal_worst
+
         dist_to_ideal_best, dist_to_ideal_worst = self.calculate_distances(weighted_data, ideal_best, ideal_worst)
+        self.dist_to_ideal_best = dist_to_ideal_best
+        self.dist_to_ideal_worst = dist_to_ideal_worst
+
         preferences = self.calculate_preferences(dist_to_ideal_best, dist_to_ideal_worst)
+        self.prefereces = preferences
 
         rankings = np.argsort(preferences)[::-1]
         alternative_labels = [alt['name'] for alt in self.data]

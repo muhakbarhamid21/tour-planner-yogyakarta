@@ -49,7 +49,7 @@ def analysis():
 
     if request.method == "POST":
         category_id = request.form['category']
-        preferences, rankings, alternative_labels = DssService.get_topsis(category_id=category_id)
+        topsis, preferences, rankings, alternative_labels = DssService.get_topsis(category_id=category_id)
 
         for i in range(len(preferences)):
             data["topsis"]["rank"].append({
@@ -57,6 +57,22 @@ def analysis():
                 'attraction': preferences[rankings[i]],
                 'rank': i + 1
             })
+
+        print("aggregated data ---> ",topsis.aggregated_data)
+
+        data["topsis"]["aggregated_data"] = topsis.aggregated_data
+        data["topsis"]["norm_data"] = topsis.norm_data
+        data["topsis"]["criteria_weights"] = topsis.criteria_weights
+        data["topsis"]["weighted_data"] = topsis.weighted_data
+        data["topsis"]["solution"] = {
+            "ideal_best": topsis.ideal_best,
+            "ideal_worst": topsis.ideal_worst
+        }
+        data["topsis"]["distance"] = {
+            "dist_ideal_best": topsis.dist_to_ideal_best,
+            "dist_ideal_worst": topsis.dist_to_ideal_worst
+        }
+        data["topsis"]["preferences"] = topsis.prefereces
 
         return render_template("dss/analysis/index.html", **data)
 

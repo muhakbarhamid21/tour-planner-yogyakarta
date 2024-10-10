@@ -31,51 +31,57 @@ class DssService:
 
         # weight_col = ["entry_price", "facility", "rating", "distance"]
         criteria_weights = {
-            "entry_price": primary_weight["entry_price"],
-            "facility": primary_weight["facility"],
-            "rating": primary_weight["rating"]["value"],
-            "distance": primary_weight["distance"]
+            "entry_price": primary_weight["entry_price"] / 100,
+            "facility": primary_weight["facility"] / 100,
+            "rating": primary_weight["rating"]["value"] / 100,
+            "distance": primary_weight["distance"] / 100
         }
 
         # sub_weight_col = ["rating.stars". "rating.reviews"]
         sub_criteria_weights = {
             "rating": {
-                "stars": primary_weight["rating"]["stars"],
-                "reviews": primary_weight["rating"]["reviews"]
+                "stars": primary_weight["rating"]["stars"] / 100,
+                "reviews": primary_weight["rating"]["reviews"] / 100
             }
         }
 
-        criteria_types = DssService.get_criteria()
-
-        # print(attraction[0])
-        # print(criteria_weights)
-        # print(sub_criteria_weights)
-        # print(criteria_types)
-        #
+        criteria_types = DssService.get_criteria_topsis()
 
         topsis = TOPSISWithSubCriteria(
             data, sub_criteria_weights, criteria_weights, criteria_types
         )
         preferences, rankings, alternative_labels = topsis.rank()
 
-        print(preferences)
-        print(rankings)
-        print(alternative_labels)
+        # print(preferences)
+        # print(rankings)
+        # print(alternative_labels)
 
-        return preferences, rankings, alternative_labels
+        return topsis, preferences, rankings, alternative_labels
+
+    @staticmethod
+    def get_criteria_topsis():
+        sql_query = text("""SELECT * FROM dss_criteria""")
+        results = db.session.execute(sql_query).fetchall()
+
+        criteria = {}
+        for row in results:
+            criteria.update({row.key: row.criteria})
+
+        db.session.close()
+
+        return criteria
 
     @staticmethod
     def get_criteria():
         sql_query = text("""SELECT * FROM dss_criteria""")
         results = db.session.execute(sql_query).fetchall()
 
-        # criteria = [{
-        #     row.key: row.criteria
-        # } for row in results]
-        criteria = {}
-        for row in results:
-            criteria.update({row.key: row.criteria})
-
+        criteria = [{
+            "id": row.id,
+            "name": row.name,
+            "criteria": row.criteria,
+            "key": row.key
+        } for row in results]
         db.session.close()
 
         return criteria
