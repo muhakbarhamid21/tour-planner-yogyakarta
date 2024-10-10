@@ -1,8 +1,8 @@
 from core.database import db, migrate
+from dotenv import load_dotenv
 from flask import Flask
 
 from app.dash.routes import dash_bp
-from app.demo.routes import demo_bp
 from app.home.routes import home_bp
 from app.tourist.routes import tourist_bp
 from app.dss.routes import dss_bp
@@ -18,6 +18,7 @@ import os
 template_dir = os.path.join('templates')
 static_dir = os.path.join('static')
 
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 def create_app():
     # Initialize the Flask app with the specified template and static folder paths
@@ -33,7 +34,6 @@ def create_app():
         # Register Blueprints
         app.register_blueprint(dash_bp)
         app.register_blueprint(tourist_bp)
-        app.register_blueprint(demo_bp)
         app.register_blueprint(dss_bp)
 
         app.register_blueprint(home_bp)

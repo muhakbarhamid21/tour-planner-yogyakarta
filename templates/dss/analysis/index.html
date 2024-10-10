@@ -41,11 +41,100 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Type of Attraction</h5>
+            <h5>Filter of Attractions</h5>
           </div>
-          <div class="card-body">{..type of attraction}</div>
+          <div class="card-body">
+            <form action="/dss/analysis" method="post">
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <label for="type-of-recreations" class="col-form-label"
+                    >Category</label
+                  >
+                </div>
+                <div class="col-sm-9 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    name="category"
+                    id="category"
+                  >
+                    <option value="all">All Category</option>
+                    {% for category in categories %}
+                      <option value="{{ category.id }}">
+                        {{ category.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <label for="type-of-recreations" class="col-form-label"
+                    >Weight</label
+                  >
+                </div>
+                <div class="col-sm-9 mb-3">
+                  <ul>
+                    <li><strong>Distance:</strong> {{ weight.distance }}</li>
+                    <li><strong>Entry Price:</strong> {{ weight.entry_price }}</li>
+                    <li><strong>Facility:</strong> {{ weight.facility }}</li>
+                    <li><strong>Rating:</strong> {{ weight.rating.value }}</li>
+                    <li><strong>Rating Stars:</strong> {{ weight.rating.stars }}</li>
+                    <li><strong>Rating Reviews:</strong> {{ weight.rating.reviews }}</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="margin-top: 20px"
+                    id="weightButton"
+                  >
+                    Analysis
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Rangking</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Alternatif</th>
+                    <th class="text-center align-middle">Attractions</th>
+                    <th class="text-center align-middle">Ranking</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-striped">
+                    {% for row in topsis.rank %}
+                      <td>{{ loop.index }}</td>
+                      <td>{{ row.alternative }}</td>
+                      <td>{{ row.attraction }}</td>
+                      <td>{{ row.rank }}</td>
+                    {% endfor %}
+                    <!-- Isi data di sini -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
@@ -454,32 +543,7 @@
         </div>
       </div>
       <!-- Card -->
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Rangking</h5>
-          </div>
-          <div class="card-body table-border-style">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="text-center align-middle">No</th>
-                    <th class="text-center align-middle">Alternatif</th>
-                    <th class="text-center align-middle">Attractions</th>
-                    <th class="text-center align-middle">Ranking</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <!-- Isi data di sini -->
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
     <!-- [ Main Content ] end -->
   </div>

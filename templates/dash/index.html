@@ -2,6 +2,7 @@
 {% extends "layouts/base.html" %}
 
 <!-- Title -->
+
 {% block title %} Dashboard {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
@@ -157,7 +158,6 @@
                         - \( w_j \): The weight provided by the user for criterion \(j\).<br>
                         - \( r_{ij} \): The normalized value for alternative \(i\) on criterion \(j\).
                     </li>
-                    
                     <li><strong>Determine Ideal Solutions:</strong> Identify the ideal positive (best) and ideal negative (worst) values for each criterion.
                         <br>Formula:
                         <span class="mathjax-process">
@@ -170,7 +170,6 @@
                         - \( J_{\text{benefit}} \): Set of criteria that are <strong>benefit</strong>-oriented (higher is better).<br>
                         - \( J_{\text{cost}} \): Set of criteria that are <strong>cost</strong>-oriented (lower is better).
                     </li>
-                    
                     <li><strong>Calculate Distances:</strong> Calculate the distance of each alternative from both the ideal positive and ideal negative solutions.
                         <br>Formula:
                         <span class="mathjax-process">
@@ -183,7 +182,6 @@
                         - \( v_{ij} \): The weighted normalized value for alternative \(i\) on criterion \(j\).<br>
                         - \( A_j^+ \), \( A_j^- \): Ideal positive and negative solutions.
                     </li>
-                    
                     <li><strong>Compute the Relative Closeness:</strong> Calculate how close each destination is to the ideal solution, with values closer to 1 being better.
                         <br>Formula:
                         <span class="mathjax-process">
@@ -193,12 +191,10 @@
                         - \( C_i^* \): The relative closeness of alternative \(i\) to the ideal positive solution. The higher \(C_i^*\), the closer the alternative is to the ideal solution.<br>
                         - \( D_i^+ \): Distance to the ideal positive solution.<br>
                         - \( D_i^- \): Distance to the ideal negative solution.
-                    </li>
-                    
+                    </li>                    
                     <li><strong>Rank the Alternatives:</strong> Destinations are ranked based on the closeness to the ideal solution, with the top-ranked destinations presented as recommendations.</li>
                 </ol>
                 <p><strong>Example:</strong> After entering weights for criteria, the system calculates the best destinations based on your preferences and displays the top recommendations.</p>
-    
             </div>
           </div>
         </div>

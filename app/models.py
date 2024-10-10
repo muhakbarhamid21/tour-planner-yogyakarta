@@ -67,7 +67,18 @@ class Weight(db.Model):
     reviews = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    # attraction_type = db.Column(db.Integer, db.ForeignKey('tourist_attraction_categories.id'), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)
 
     # Relationship
     # user = db.relationship('account_users', backref=db.backref('dss_weights', lazy=True))
+
+
+class Criteria(db.Model):
+    __tablename__ = 'dss_criteria'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    key = db.Column(db.String(100), nullable=False)
+    criteria = db.Column(db.String(100), nullable=False, default='cost')
+
+    user_id = db.Column(db.Integer, db.ForeignKey('account_users.id'), nullable=False)

@@ -1,0 +1,142 @@
+<!-- Base -->
+{% extends "layouts/base.html" %}
+
+<!-- Title -->
+{% block title %} Criteria - User {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- Start Contect -->
+
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Criteria</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/user/dashboard-user"
+                  ><i class="feather icon-home"></i
+                ></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Criteria</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="row">
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Edit Criteria</h5>
+          </div>
+          <div class="card-body">
+            <form action="/dss/criteria" method="POST">
+
+              <input type="hidden" id="criteria_id" name="criteria_id" value="">
+
+              <!-- Form untuk Parameter -->
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Parameter</label>
+                <div class="col-sm-10 mb-3">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="parameter"
+                    disabled
+                  >
+                    <option value="" selected disabled hidden>-</option>
+                    {% for row in criteria %}
+                      <option value="{{ row.name }}">{{ row.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <!-- Form untuk Criteria -->
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2">Criteria</label>
+                <div class="col-sm-10 mb-3">
+                  <select class="form-control bordered-dropdown" id="criteria" name="criteria">
+                    <option value="" selected disabled hidden>-</option>
+                    <option value="cost">cost</option>
+                    <option value="benefit">benefit</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top: 20px"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Parameter</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle">#</th>
+                    <th class="text-center align-middle">Parameter</th>
+                    <th class="text-center align-middle">Criteria</th>
+                    <th class="text-center align-middle">Editing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in criteria %}
+                    <tr>
+                      <td class="text-center">{{ loop.index }}</td>
+                      <td class="text-center" >{{ row.name }}</td>
+                      <td class="text-center" >{{ row.criteria }}</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm"
+                                data-parameter="{{ row.name }}"
+                                data-criteria="{{ row.criteria }}"
+                                data-id="{{ row.id }}"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+  </div>
+</div>
+
+<!-- End Contect -->
+
+{%endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="/static/assets/js/plugins/edit-criteria.js"></script>
+{% endblock javascripts %}
