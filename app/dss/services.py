@@ -1,10 +1,13 @@
 from app.tourist.services import AttractionsService
 from middleware.auth import is_authenticated
 from utils.jwt import decode_jwt
+from utils.topsis import TOPSISWithSubCriteria
 from sqlalchemy import text
 from core.database import db
 from flask import flash, request
 from app.models import Weight, Criteria
+
+import numpy as np
 
 
 class DssService:
@@ -19,7 +22,54 @@ class DssService:
         else:
             attraction = AttractionsService.get_attractions()
 
-        return attraction
+        columns = ["name", "entry_price", "facility", "stars", "reviews", "distance"]
+
+        # Mengambil data berdasarkan key dalam columns untuk setiap dictionary di list
+        data = [{key: item[key] for key in columns if key in item} for item in attraction]
+
+        primary_weight = DssService.get_weight()
+
+        # weight_col = ["entry_price", "facility", "rating", "distance"]
+        criteria_weights = {
+            "entry_price": primary_weight["entry_price"] / 100,
+            "facility": primary_weight["facility"] / 100,
+            "rating": primary_weight["rating"]["value"] / 100,
+            "distance": primary_weight["distance"] / 100
+        }
+
+        # sub_weight_col = ["rating.stars". "rating.reviews"]
+        sub_criteria_weights = {
+            "rating": {
+                "stars": primary_weight["rating"]["stars"] / 100,
+                "reviews": primary_weight["rating"]["reviews"] / 100
+            }
+        }
+
+        criteria_types = DssService.get_criteria_topsis()
+
+        topsis = TOPSISWithSubCriteria(
+            data, sub_criteria_weights, criteria_weights, criteria_types
+        )
+        preferences, rankings, alternative_labels = topsis.rank()
+
+        # print(preferences)
+        # print(rankings)
+        # print(alternative_labels)
+
+        return topsis, preferences, rankings, alternative_labels
+
+    @staticmethod
+    def get_criteria_topsis():
+        sql_query = text("""SELECT * FROM dss_criteria""")
+        results = db.session.execute(sql_query).fetchall()
+
+        criteria = {}
+        for row in results:
+            criteria.update({row.key: row.criteria})
+
+        db.session.close()
+
+        return criteria
 
     @staticmethod
     def get_criteria():
@@ -32,7 +82,6 @@ class DssService:
             "criteria": row.criteria,
             "key": row.key
         } for row in results]
-
         db.session.close()
 
         return criteria

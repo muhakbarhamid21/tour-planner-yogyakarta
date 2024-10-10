@@ -33,8 +33,6 @@ def analysis():
     categories = AttractionsService.get_attraction_categories()
     weight = DssService.get_weight()
 
-    topsis_model = TOPSISWithSubCriteria(data, sub_criteria_weights, criteria_weights, criteria_types)
-
     topsis = {
         "rank": [],
     }
@@ -47,15 +45,34 @@ def analysis():
 
     if request.method == "POST":
         category_id = request.form['category']
-        topsis = DssService.get_topsis(category_id=category_id)
-        print("lengt of topsis: ", len(topsis))
-        # topsis analysis
-        data["topsis"]["rank"].append({
-            "id": 1,
-            "alternative": 1,
-            "attraction": "Hotel oke",
-            "rank": 0.76
-        })
+        topsis, preferences, rankings, alternative_labels = DssService.get_topsis(category_id=category_id)
+
+        if category_id != "all":
+            attractions = AttractionsService.get_attractions(category_id=category_id)
+        else:
+            attractions = AttractionsService.get_attractions()
+
+
+        for i in range(len(preferences)):
+            data["topsis"]["rank"].append({
+                'alternative': alternative_labels[rankings[i]],
+                'attraction': preferences[rankings[i]],
+                'rank': i + 1
+            })
+        data["attractions"] = attractions
+        data["topsis"]["aggregated_data"] = topsis.aggregated_data
+        data["topsis"]["norm_data"] = topsis.norm_data
+        data["topsis"]["criteria_weights"] = topsis.criteria_weights
+        data["topsis"]["weighted_data"] = topsis.weighted_data
+        data["topsis"]["solution"] = {
+            "ideal_best": topsis.ideal_best,
+            "ideal_worst": topsis.ideal_worst
+        }
+        data["topsis"]["distance"] = {
+            "dist_ideal_best": topsis.dist_to_ideal_best,
+            "dist_ideal_worst": topsis.dist_to_ideal_worst
+        }
+        data["topsis"]["preferences"] = topsis.prefereces
 
         return render_template("dss/analysis/index.html", **data)
 

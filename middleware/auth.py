@@ -2,6 +2,9 @@ from flask import jsonify
 from functools import wraps
 from flask import request, redirect, url_for
 import jwt, os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class AuthMiddleware:

@@ -1,5 +1,5 @@
 <!-- Base -->
-{% extends "layouts/base-admin.html" %}
+{% extends "layouts/base.html" %}
 
 <!-- Title -->
 {% block title %} Manage Users - Admin {% endblock %}
@@ -99,21 +99,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Prabowo Subianto</td>
-                    <td class="text-center">prabowo</td>
-
-                    <td class="text-center">prabowo@gmail.com</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% for user in users %}
+                    <tr>
+                      <td class="text-center">{{ loop.index }}</td>
+                      <td class="text-center">{{ user.fullname }}</td>
+                      <td class="text-center">{{ user.username }}</td>
+                      <td class="text-center">{{ user.email }}</td>
+                      <td class="text-center">
+                        <button class="btn btn-primary btn-sm disabled">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm disabled">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
