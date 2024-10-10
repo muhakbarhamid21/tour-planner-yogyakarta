@@ -10,8 +10,7 @@ from utils.jwt import decode_jwt
 from utils.topsis import TOPSISWithSubCriteria
 
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from core.database import db
 
 dss_bp = Blueprint('dss', __name__, root_path="/dss")
 
@@ -85,7 +84,7 @@ def analysis():
     return render_template("dss/analysis/index.html", **data)
 
 
-@dss_bp.route('/dss/alternative', methods=['GET', 'POST'])
+@dss_bp.route('/dss/alternative', methods=['GET', 'POST', "DELETE"])
 @is_authenticated
 def alternative():
     data = {}
