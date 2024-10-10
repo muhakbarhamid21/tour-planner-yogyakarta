@@ -101,6 +101,67 @@
           </div>
         </div>
       </div>
+      <!-- Card -->
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Attraction</h5>
+          </div>
+          <div class="card-body table-border-style">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-left align-middle" rowspan="3">#</th>
+                    <th class="text-left align-middle" rowspan="3">
+                      Attraction
+                    </th>
+                    <th class="text-left align-middle" colspan="6">
+                      Parameter
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-left align-middle" rowspan="2">
+                      Distance (KM) (C1)
+                    </th>
+                    <th class="text-left align-middle" rowspan="2">
+                      Entry Price (C2)
+                    </th>
+                    <th class="text-left align-middle" colspan="2">
+                      Rating (C3)
+                    </th>
+                    <th class="text-left align-middle" rowspan="2">
+                      Facility (C4)
+                    </th>
+                    <th class="text-left align-middle" rowspan="2">
+                      Category (Unused)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-left align-middle">Star (C3.1)</th>
+                    <th class="text-left align-middle">Comment (C3.2)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions %}
+                  <tr>
+                    <td class="text-left">{{ loop.index }}</td>
+                    <td class="text-left">{{ attraction.name }}</td>
+                    <td class="text-left">{{ attraction.distance | round(2) }}</td>
+                    <td class="text-left">{{ attraction.entry_price }}</td>
+                    <td class="text-left">{{ attraction.stars }}</td>
+                    <td class="text-left">{{ attraction.reviews }}</td>
+                    <td class="text-left">{{ attraction.facility }}</td>
+                    <td class="text-left">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+{#      Card#}
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
@@ -134,56 +195,6 @@
         </div>
       </div>
 
-
-      <!-- Card -->
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Attraction</h5>
-          </div>
-          <div class="card-body table-border-style">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="text-left align-middle" rowspan="3">#</th>
-                    <th class="text-left align-middle" rowspan="3">
-                      Alternative
-                    </th>
-                    <th class="text-left align-middle" rowspan="3">
-                      Attraction
-                    </th>
-                    <th class="text-left align-middle" colspan="5">
-                      Parameter
-                    </th>
-                  </tr>
-                  <tr>
-                    <th class="text-left align-middle" rowspan="2">
-                      Distance (KM) (C1)
-                    </th>
-                    <th class="text-left align-middle" rowspan="2">
-                      Entry Price (C2)
-                    </th>
-                    <th class="text-left align-middle" colspan="2">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle" rowspan="2">
-                      Facility (C4)
-                    </th>
-                  </tr>
-                  <tr>
-                    <th class="text-left align-middle">Star (C3.1)</th>
-                    <th class="text-left align-middle">Comment (C3.2)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">

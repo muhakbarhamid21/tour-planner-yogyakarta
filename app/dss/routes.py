@@ -33,10 +33,6 @@ def analysis():
     categories = AttractionsService.get_attraction_categories()
     weight = DssService.get_weight()
 
-    print("weight", weight)
-
-    # topsis_model = TOPSISWithSubCriteria(data, sub_criteria_weights, criteria_weights, criteria_types)
-
     topsis = {
         "rank": [],
     }
@@ -51,15 +47,19 @@ def analysis():
         category_id = request.form['category']
         topsis, preferences, rankings, alternative_labels = DssService.get_topsis(category_id=category_id)
 
+        if category_id != "all":
+            attractions = AttractionsService.get_attractions(category_id=category_id)
+        else:
+            attractions = AttractionsService.get_attractions()
+
+
         for i in range(len(preferences)):
             data["topsis"]["rank"].append({
                 'alternative': alternative_labels[rankings[i]],
                 'attraction': preferences[rankings[i]],
                 'rank': i + 1
             })
-
-        print("aggregated data ---> ",topsis.aggregated_data)
-
+        data["attractions"] = attractions
         data["topsis"]["aggregated_data"] = topsis.aggregated_data
         data["topsis"]["norm_data"] = topsis.norm_data
         data["topsis"]["criteria_weights"] = topsis.criteria_weights
