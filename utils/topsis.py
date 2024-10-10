@@ -42,8 +42,8 @@ class TOPSISWithSubCriteria:
 
     def ideal_solutions(self, weighted_data):
         """Determine the ideal (best) and anti-ideal (worst) solutions."""
-        ideal_best = np.amax(weighted_data * self.criteria_types, axis=0)
-        ideal_worst = np.amin(weighted_data * self.criteria_types, axis=0)
+        ideal_best = np.amax(weighted_data * self.criteria_types , axis=0) * self.criteria_types
+        ideal_worst = np.amin(weighted_data * self.criteria_types, axis=0) * self.criteria_types
         return ideal_best, ideal_worst
 
     def calculate_distances(self, weighted_data, ideal_best, ideal_worst):
