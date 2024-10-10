@@ -1,30 +1,28 @@
+# Import numpy untuk operasi numerik
 import numpy as np
 
 
+# Class TOPSIS
 class TOPSISWithSubCriteria:
     def __init__(self, data, sub_criteria_weights, criteria_weights, criteria_types):
-        """
-        Initialize the TOPSIS instance with sub-criteria.
-
-        :param data: Matrix of alternatives with sub-criteria included and alternative labels.
-        :param sub_criteria_weights: Dictionary with main criteria and their sub-criteria weights.
-        :param criteria_weights: List of weights for the main criteria.
-        :param criteria_types: List indicating 'benefit' or 'cost' for each main criterion.
-        """
         self.data = data
         self.sub_criteria_weights = sub_criteria_weights
-        self.criteria_weights = np.array(criteria_weights, dtype=float)
-        self.criteria_types = criteria_types
+        self.criteria_weights = np.array([criteria_weights[crit] for crit in criteria_weights], dtype=float)
+        self.criteria_keys = list(criteria_weights.keys())
+        self.criteria_types = np.array([1 if criteria_types[crit] == 'benefit' else -1 for crit in criteria_weights])
 
     def aggregate_sub_criteria(self):
-        """Aggregate sub-criteria to form main criteria scores."""
+        """Aggregate sub-criteria based on weights to form main criteria scores."""
         aggregated_data = []
         for alt in self.data:
             row = []
-            for criterion, weights in self.sub_criteria_weights.items():
-                sub_values = np.array(alt[criterion])
-                sub_weights = np.array(weights)
-                aggregated_score = np.sum(sub_values * sub_weights)
+            for criterion in self.criteria_keys:
+                if criterion in self.sub_criteria_weights:  # Handle sub-criteria
+                    sub_values = np.array([alt[sub] for sub in self.sub_criteria_weights[criterion].keys()])
+                    sub_weights = np.array(list(self.sub_criteria_weights[criterion].values()))
+                    aggregated_score = np.sum(sub_values * sub_weights)
+                else:
+                    aggregated_score = alt[criterion]  # No sub-criteria, single value
                 row.append(aggregated_score)
             aggregated_data.append(row)
         return np.array(aggregated_data)
@@ -41,12 +39,8 @@ class TOPSISWithSubCriteria:
 
     def ideal_solutions(self, weighted_data):
         """Determine the ideal (best) and anti-ideal (worst) solutions."""
-        ideal_best = np.amax(weighted_data, axis=0) * (self.criteria_types == 'benefit') + \
-                     np.amin(weighted_data, axis=0) * (self.criteria_types == 'cost')
-
-        ideal_worst = np.amin(weighted_data, axis=0) * (self.criteria_types == 'benefit') + \
-                      np.amax(weighted_data, axis=0) * (self.criteria_types == 'cost')
-
+        ideal_best = np.amax(weighted_data * self.criteria_types, axis=0)
+        ideal_worst = np.amin(weighted_data * self.criteria_types, axis=0)
         return ideal_best, ideal_worst
 
     def calculate_distances(self, weighted_data, ideal_best, ideal_worst):
@@ -63,26 +57,16 @@ class TOPSISWithSubCriteria:
     def rank(self):
         """Perform the entire TOPSIS process with sub-criteria and return rankings."""
         aggregated_data = self.aggregate_sub_criteria()
-        print("Aggregated Data:\n", aggregated_data)
-
         norm_data = self.normalize_matrix(aggregated_data)
-        print("Normalized Data:\n", norm_data)
-
         weighted_data = self.weighted_normalized_matrix(norm_data)
-        print("Weighted Normalized Data:\n", weighted_data)
-
         ideal_best, ideal_worst = self.ideal_solutions(weighted_data)
-        print(f"Ideal Best: {ideal_best}")
-        print(f"Ideal Worst: {ideal_worst}")
-
         dist_to_ideal_best, dist_to_ideal_worst = self.calculate_distances(weighted_data, ideal_best, ideal_worst)
-        print(f"Distance to Ideal Best: {dist_to_ideal_best}")
-        print(f"Distance to Ideal Worst: {dist_to_ideal_worst}")
-
         preferences = self.calculate_preferences(dist_to_ideal_best, dist_to_ideal_worst)
-        print(f"Preferences: {preferences}")
+
         rankings = np.argsort(preferences)[::-1]
-        return preferences, rankings
+        alternative_labels = [alt['name'] for alt in self.data]
+
+        return preferences, rankings, alternative_labels
 
 
 # # Example usage:

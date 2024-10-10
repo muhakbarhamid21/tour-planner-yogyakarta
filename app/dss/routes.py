@@ -33,7 +33,9 @@ def analysis():
     categories = AttractionsService.get_attraction_categories()
     weight = DssService.get_weight()
 
-    topsis_model = TOPSISWithSubCriteria(data, sub_criteria_weights, criteria_weights, criteria_types)
+    print("weight", weight)
+
+    # topsis_model = TOPSISWithSubCriteria(data, sub_criteria_weights, criteria_weights, criteria_types)
 
     topsis = {
         "rank": [],
@@ -47,15 +49,14 @@ def analysis():
 
     if request.method == "POST":
         category_id = request.form['category']
-        topsis = DssService.get_topsis(category_id=category_id)
-        print("lengt of topsis: ", len(topsis))
-        # topsis analysis
-        data["topsis"]["rank"].append({
-            "id": 1,
-            "alternative": 1,
-            "attraction": "Hotel oke",
-            "rank": 0.76
-        })
+        preferences, rankings, alternative_labels = DssService.get_topsis(category_id=category_id)
+
+        for i in range(len(preferences)):
+            data["topsis"]["rank"].append({
+                'alternative': alternative_labels[rankings[i]],
+                'attraction': preferences[rankings[i]],
+                'rank': i + 1
+            })
 
         return render_template("dss/analysis/index.html", **data)
 

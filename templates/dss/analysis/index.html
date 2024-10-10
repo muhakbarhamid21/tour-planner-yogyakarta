@@ -111,22 +111,22 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-center align-middle">No</th>
-                    <th class="text-center align-middle">Alternatif</th>
-                    <th class="text-center align-middle">Attractions</th>
-                    <th class="text-center align-middle">Ranking</th>
+                    <th class="text-left align-middle">No</th>
+                    <th class="text-left align-middle">Alternatif</th>
+                    <th class="text-left align-middle">Preferences</th>
+                    <th class="text-left align-middle">Ranking</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for row in topsis.rank %}
                   <tr class="table-striped">
-                    {% for row in topsis.rank %}
                       <td>{{ loop.index }}</td>
                       <td>{{ row.alternative }}</td>
                       <td>{{ row.attraction }}</td>
                       <td>{{ row.rank }}</td>
-                    {% endfor %}
                     <!-- Isi data di sini -->
                   </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>

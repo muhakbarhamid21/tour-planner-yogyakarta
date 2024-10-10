@@ -1,10 +1,13 @@
 from app.tourist.services import AttractionsService
 from middleware.auth import is_authenticated
 from utils.jwt import decode_jwt
+from utils.topsis import TOPSISWithSubCriteria
 from sqlalchemy import text
 from core.database import db
 from flask import flash, request
 from app.models import Weight, Criteria
+
+import numpy as np
 
 
 class DssService:
@@ -19,19 +22,59 @@ class DssService:
         else:
             attraction = AttractionsService.get_attractions()
 
-        return attraction
+        columns = ["name", "entry_price", "facility", "stars", "reviews", "distance"]
+
+        # Mengambil data berdasarkan key dalam columns untuk setiap dictionary di list
+        data = [{key: item[key] for key in columns if key in item} for item in attraction]
+
+        primary_weight = DssService.get_weight()
+
+        # weight_col = ["entry_price", "facility", "rating", "distance"]
+        criteria_weights = {
+            "entry_price": primary_weight["entry_price"],
+            "facility": primary_weight["facility"],
+            "rating": primary_weight["rating"]["value"],
+            "distance": primary_weight["distance"]
+        }
+
+        # sub_weight_col = ["rating.stars". "rating.reviews"]
+        sub_criteria_weights = {
+            "rating": {
+                "stars": primary_weight["rating"]["stars"],
+                "reviews": primary_weight["rating"]["reviews"]
+            }
+        }
+
+        criteria_types = DssService.get_criteria()
+
+        # print(attraction[0])
+        # print(criteria_weights)
+        # print(sub_criteria_weights)
+        # print(criteria_types)
+        #
+
+        topsis = TOPSISWithSubCriteria(
+            data, sub_criteria_weights, criteria_weights, criteria_types
+        )
+        preferences, rankings, alternative_labels = topsis.rank()
+
+        print(preferences)
+        print(rankings)
+        print(alternative_labels)
+
+        return preferences, rankings, alternative_labels
 
     @staticmethod
     def get_criteria():
         sql_query = text("""SELECT * FROM dss_criteria""")
         results = db.session.execute(sql_query).fetchall()
 
-        criteria = [{
-            "id": row.id,
-            "name": row.name,
-            "criteria": row.criteria,
-            "key": row.key
-        } for row in results]
+        # criteria = [{
+        #     row.key: row.criteria
+        # } for row in results]
+        criteria = {}
+        for row in results:
+            criteria.update({row.key: row.criteria})
 
         db.session.close()
 
