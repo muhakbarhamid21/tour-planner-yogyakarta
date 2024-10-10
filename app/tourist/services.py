@@ -1,3 +1,4 @@
+from flask import flash
 from app.models import Attraction
 from core.database import db
 from sqlalchemy import text
@@ -8,6 +9,7 @@ class AttractionsService:
 
     def __init__(self):
         pass
+    
     def get_attraction_categories():
         sql_query = text("""SELECT
          id, name
@@ -93,3 +95,43 @@ class AttractionsService:
             attraction['distance'] = haversine(user_lon, user_lat, attraction['lon'], attraction['lat'])
 
         return attractions
+    
+    @staticmethod
+    def get_attractions_by_category():
+        attractions = AttractionsService.get_attractions()
+        
+        category_1 = [attr for attr in attractions if attr['category']['id'] == 1]
+        category_2 = [attr for attr in attractions if attr['category']['id'] == 2]
+        category_3 = [attr for attr in attractions if attr['category']['id'] == 3]
+        category_4 = [attr for attr in attractions if attr['category']['id'] == 4]
+        
+        attractions_by_category = {
+            "category_1": category_1,
+            "category_2": category_2,
+            "category_3": category_3,
+            "category_4": category_4
+        }
+        
+        return attractions_by_category
+    
+    @staticmethod
+    def add_attraction(category_id, name, lon, lat, entry_price, stars, reviews, facility, user_id):
+        new_attraction = Attraction(
+            category_id=category_id,
+            name=name,
+            lon=lon,
+            lat=lat,
+            entry_price=entry_price,
+            stars=stars,
+            reviews=reviews,
+            facility=facility,
+            user_id=user_id
+        )
+
+        try:
+            db.session.add(new_attraction)
+            db.session.commit()
+            flash('Attraction added successfully!')
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error adding attraction: {e}', 'error')

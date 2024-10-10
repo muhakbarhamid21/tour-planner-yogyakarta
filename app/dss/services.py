@@ -5,7 +5,7 @@ from utils.topsis import TOPSISWithSubCriteria
 from sqlalchemy import text
 from core.database import db
 from flask import flash, request
-from app.models import Weight, Criteria
+from app.models import Attraction, Weight, Criteria
 
 import numpy as np
 

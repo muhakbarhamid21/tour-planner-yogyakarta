@@ -1,26 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const editButtons = document.querySelectorAll(".btn-primary.btn-sm");
+  const editButtons = document.querySelectorAll(".edit-btn");
 
   editButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Mendapatkan elemen card yang terdekat dari tombol yang diklik
-      const card = this.closest(".card");
-
-      // Mengambil teks dari header h5 (Type of Attractions)
-      const typeOfAttractions = card.querySelector("h5").innerText.trim(); // Mengambil teks dari h5
-
-      // Mengambil data dari baris tabel
-      const row = this.closest("tr");
-      const attraction = row.children[1].innerText.trim(); // Attraction (kolom 2)
-      const distance = row.children[2].innerText.trim(); // Distance (kolom 3)
-      const entryPrice = row.children[3].innerText.trim(); // Entry Price (kolom 4)
-      const star = row.children[4].innerText.trim(); // Star (kolom 5)
-      const comment = row.children[5].innerText.trim(); // Comment (kolom 6)
-      const facility = row.children[6].innerText.trim(); // Facility (kolom 7)
+      // Mengambil data dari atribut tombol
+      const attractionId = this.getAttribute("data-id");
+      const categoryId = this.getAttribute("data-category-id");
+      const attraction = this.getAttribute("data-name");
+      const lon = this.getAttribute("data-lon");
+      const lat = this.getAttribute("data-lat");
+      const entryPrice = this.getAttribute("data-entry_price");
+      const star = this.getAttribute("data-stars");
+      const comment = this.getAttribute("data-reviews");
+      const facility = this.getAttribute("data-facility");
 
       // Memasukkan data ke dalam form
-      document.getElementById("type-of-recreations").value = typeOfAttractions; // Mengisi Type of Attractions
+      document.getElementById("attraction-id").value = attractionId; // hidden field for ID
+      document.getElementById("type-of-recreations").value = categoryId; // Mengisi Type of Attractions
       document.getElementById("attraction").value = attraction; // Mengisi Attraction
+      document.getElementById("lon").value = lon; // Mengisi Long
+      document.getElementById("lat").value = lat; // Mengisi Lat
       document.getElementById("entryPrice").value = entryPrice; // Mengisi Entry Price
       document.getElementById("star").value = star; // Mengisi Star
       document.getElementById("comment").value = comment; // Mengisi Comment

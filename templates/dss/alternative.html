@@ -44,7 +44,11 @@
             <h5>Add/Edit Alternative</h5>
           </div>
           <div class="card-body">
-            <form>
+            <form method="POST" action="{{ url_for('dss.alternative') }}">
+              <!---->
+              <input type="hidden" id="attraction-id" name="attraction_id" value="{{ attraction.id if attraction else '' }}"/>
+
+              <!---->
               <div class="form-group row">
                 <label class="col-form-label col-sm-2"
                   >Type of Attractions</label
@@ -53,152 +57,227 @@
                   <select
                     class="form-control bordered-dropdown"
                     id="type-of-recreations"
+                    name="category_id"
                   >
                     <option value="" selected disabled hidden>-</option>
-                    <option>Culture & History</option>
-                    <option>Education & Learning</option>
-                    <option>Nature & Recreation</option>
-                    <option>Adventure</option>
+                    <option value="1" {% if attraction and attraction.category_id == 1 %}selected{% endif %}>Culture & History</option>
+                    <option value="2" {% if attraction and attraction.category_id == 2 %}selected{% endif %}>Education & Learning</option>
+                    <option value="3" {% if attraction and attraction.category_id == 3 %}selected{% endif %}>Nature & Recreation</option>
+                    <option value="4" {% if attraction and attraction.category_id == 4 %}selected{% endif %}>Adventure</option>
                   </select>
                 </div>
               </div>
+
+              <!---->
               <div class="form-group row">
                 <label class="col-form-label col-sm-2">Attraction</label>
                 <div class="col-sm-10 mb-3">
-                  <input type="text" class="form-control" id="attraction" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-form-label col-sm-2">Entry Price (C2)</label>
-                <div class="col-sm-10 mb-3">
-                  <input type="text" class="form-control" id="entryPrice" />
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="col-form-label col-sm-2">Star (C3.1)</label>
-                <div class="col-sm-10 mb-3">
-                  <input type="text" class="form-control" id="star" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="attraction"
+                    name="attraction"
+                    value="{{ attraction.name if attraction else '' }}"
+                  />
                 </div>
               </div>
 
+              <!---->
+              <div class="form-group row" style="height: 51px">
+                <label class="col-form-label col-sm-2"
+                  >(C<sub>2</sub>) Distance</label
+                >
+              </div>
+
+              <!---->
               <div class="form-group row">
-                <label class="col-form-label col-sm-2">Comment (C3.2)</label>
+                <label
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >Longitude</label
+                >
                 <div class="col-sm-10 mb-3">
-                  <input type="text" class="form-control" id="comment" />
+                  <input type="text" class="form-control" id="lon" name="lon" value="{{ attraction.lon if attraction else '' }}" />
                 </div>
               </div>
 
+              <!---->
               <div class="form-group row">
-                <label class="col-form-label col-sm-2">Facility (C4)</label>
+                <label
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >Latitude</label
+                >
                 <div class="col-sm-10 mb-3">
-                  <input type="text" class="form-control" id="facility" />
+                  <input type="text" class="form-control" id="lat" name="lat" value="{{ attraction.lat if attraction else '' }}" />
                 </div>
               </div>
 
+              <!---->
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2"
+                  >(C<sub>2</sub>) Entry Price</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="entryPrice"
+                    name="entry_price"
+                    value="{{ attraction.entry_price if attraction else '' }}"
+                  />
+                </div>
+              </div>
+
+              <!---->
+              <div class="form-group row" style="height: 51px">
+                <label class="col-form-label col-sm-2"
+                  >(C<sub>3</sub>) Rating</label
+                >
+              </div>
+
+              <!---->
+              <div class="form-group row">
+                <label
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >(C<sub>3.1</sub>) Star</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="star"
+                    name="stars"
+                    value="{{ attraction.stars if attraction else '' }}"
+                  />
+                </div>
+              </div>
+
+              <!---->
+              <div class="form-group row">
+                <label
+                  class="col-form-label col-sm-2"
+                  style="margin-left: 30px; margin-right: -30px"
+                  >(C<sub>3.2</sub>) Comment</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="comment"
+                    name="reviews"
+                    value="{{ attraction.reviews if attraction else '' }}" 
+                  />
+                </div>
+              </div>
+
+              <!---->
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2"
+                  >(C<sub>4</sub>) Facility</label
+                >
+                <div class="col-sm-10 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="facility"
+                    name="facility"
+                    value="{{ attraction.facility if attraction else '' }}"
+                  />
+                </div>
+              </div>
+
+              <!---->
               <button
                 type="submit"
                 class="btn btn-primary"
                 style="margin-top: 20px"
               >
-                Submit
+                {{ 'Update' if attraction else 'Add' }}
               </button>
+
             </form>
           </div>
         </div>
       </div>
-      <!-- Culture & History -->
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Culture & History</h5>
-          </div>
-          <div class="card-body table-border-style">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="text-center align-middle" rowspan="2">#</th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Attraction
-                    </th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Distance (KM)
-                    </th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Entry Price
-                    </th>
-                    <th class="text-center align-middle" colspan="2">Rating</th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Facility
-                    </th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Editing
-                    </th>
-                  </tr>
-                  <tr>
-                    <th class="text-center align-middle">Star</th>
-                    <th class="text-center align-middle">Comment</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Gusion</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">Aamon</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">Ling</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+        <!-- Culture & History -->
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5>Culture & History</h5>
+            </div>
+            <div class="card-body table-border-style">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center align-middle" rowspan="2">#</th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Attraction
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Distance (KM)
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Entry Price
+                      </th>
+                      <th class="text-center align-middle" colspan="2">Rating</th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Facility
+                      </th>
+                      <th class="text-center align-middle" rowspan="2">
+                        Editing
+                      </th>
+                    </tr>
+                    <tr>
+                      <th class="text-center align-middle">Star</th>
+                      <th class="text-center align-middle">Comment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        {% if attractions_by_category.category_1 %}
+                        {% for attraction in attractions_by_category.category_1 %}
+                        <tr>
+                            <td class="text-center">{{ loop.index }}</td>
+                            <td class="text-center">{{ attraction.name }}</td>
+                            <td class="text-center">{{ attraction.distance | round(3) }}</td>
+                            <td class="text-center">{{ attraction.entry_price | int }}</td>
+                            <td class="text-center">{{ attraction.stars | round(1) }}</td>
+                            <td class="text-center">{{ attraction.reviews | int }}</td>
+                            <td class="text-center">{{ attraction.facility }}</td>
+                            <td class="text-center">
+                                <button class="btn btn-primary btn-sm edit-btn"
+                                        data-id="{{ attraction.id }}"
+                                        data-category-id="{{ attraction.category.id }}"
+                                        data-name="{{ attraction.name }}"
+                                        data-lon="{{ attraction.lon }}"
+                                        data-lat="{{ attraction.lat }}"
+                                        data-entry_price="{{ attraction.entry_price }}"
+                                        data-stars="{{ attraction.stars }}"
+                                        data-reviews="{{ attraction.reviews }}"
+                                        data-facility="{{ attraction.facility }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm delete-btn" data-id="{{ attraction.id }}">
+                                <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="8" class="text-center">No attractions found for this category.</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+
       <!-- Education & Learning -->
       <div class="col-md-12">
         <div class="card">
@@ -234,16 +313,28 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% if attractions_by_category.category_2 %} {% for attraction
+                  in attractions_by_category.category_2 %}
                   <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Miya</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
                     <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
+                      {{ attraction.distance | round(3) }}
+                    </td>
+                    <td class="text-center">
+                      {{ attraction.entry_price | int }}
+                    </td>
+                    <td class="text-center">
+                      {{ attraction.stars | round(1) }}
+                    </td>
+                    <td class="text-center">{{ attraction.reviews | int }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">
+                      <button
+                        class="btn btn-primary btn-sm"
+                        data-lon="{{ attraction.lon }}"
+                        data-lat="{{ attraction.lat }}"
+                      >
                         <i class="fas fa-edit"></i>
                       </button>
                       <button class="btn btn-danger btn-sm">
@@ -251,46 +342,20 @@
                       </button>
                     </td>
                   </tr>
+                  {% endfor %} {% else %}
                   <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">Hanabi</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
+                    <td colspan="8" class="text-center">
+                      No attractions found for this category.
                     </td>
                   </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">Granger</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% endif %}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Nature & Recreation -->
       <div class="col-md-12">
         <div class="card">
@@ -326,16 +391,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% if attractions_by_category.category_3 %} {% for attraction
+                  in attractions_by_category.category_3 %}
                   <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Johnson</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
                     <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
+                      {{ attraction.distance | round(3) }}
+                    </td>
+                    <td class="text-center">
+                      {{ attraction.entry_price | int }}
+                    </td>
+                    <td class="text-center">
+                      {{ attraction.stars | round(1) }}
+                    </td>
+                    <td class="text-center">{{ attraction.reviews | int }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">
+                      <button class="btn btn-primary btn-sm
+                        data-lon="{{ attraction.lon }}"
+                        data-lat="{{ attraction.lat }}"">
                         <i class="fas fa-edit"></i>
                       </button>
                       <button class="btn btn-danger btn-sm">
@@ -343,46 +418,20 @@
                       </button>
                     </td>
                   </tr>
+                  {% endfor %} {% else %}
                   <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">Lolita</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
+                    <td colspan="8" class="text-center">
+                      No attractions found for this category.
                     </td>
                   </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">Tigreal</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% endif %}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Adventure -->
       <div class="col-md-12">
         <div class="card">
@@ -418,16 +467,28 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% if attractions_by_category.category_4 %} {% for attraction
+                  in attractions_by_category.category_4 %}
                   <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">Budi</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
                     <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
+                      {{ attraction.distance | round(3) }}
+                    </td>
+                    <td class="text-center">
+                      {{ attraction.entry_price | int }}
+                    </td>
+                    <td class="text-center">
+                      {{ attraction.stars | round(1) }}
+                    </td>
+                    <td class="text-center">{{ attraction.reviews | int }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">
+                      <button
+                        class="btn btn-primary btn-sm"
+                        data-lon="{{ attraction.lon }}"
+                        data-lat="{{ attraction.lat }}"
+                      >
                         <i class="fas fa-edit"></i>
                       </button>
                       <button class="btn btn-danger btn-sm">
@@ -435,40 +496,13 @@
                       </button>
                     </td>
                   </tr>
+                  {% endfor %} {% else %}
                   <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">Cyclops</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
+                    <td colspan="8" class="text-center">
+                      No attractions found for this category.
                     </td>
                   </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">Invoker</td>
-                    <td class="text-center">2.790</td>
-                    <td class="text-center">15.000</td>
-                    <td class="text-center">4.6</td>
-                    <td class="text-center">41.684</td>
-                    <td class="text-center">4.2</td>
-                    <td class="text-center">
-                      <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% endif %}
                 </tbody>
               </table>
             </div>
@@ -487,4 +521,5 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 <script src="/static/assets/js/plugins/edit-alternative.js"></script>
+<script src="/static/assets/js/plugins/del-alternative.js"></script>
 {% endblock javascripts %}
