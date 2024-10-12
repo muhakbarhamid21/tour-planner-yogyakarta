@@ -4,7 +4,7 @@ from app.dss.services import DssService
 from app.models import Attraction
 from app.tourist.services import AttractionsService
 from middleware.auth import is_authenticated
-from flask import flash, jsonify, render_template, request, url_for, redirect
+from flask import flash, jsonify, render_template, request, url_for, redirect, session
 from flask.blueprints import Blueprint
 from utils.jwt import decode_jwt
 from utils.topsis import TOPSISWithSubCriteria
@@ -49,6 +49,7 @@ def analysis():
         "topsis": topsis
     }
 
+
     if request.method == "POST":
         category_id = request.form['category']
         topsis, preferences, rankings, alternative_labels = DssService.get_topsis(category_id=category_id)
@@ -57,7 +58,6 @@ def analysis():
             attractions = AttractionsService.get_attractions(category_id=category_id)
         else:
             attractions = AttractionsService.get_attractions()
-
 
         for i in range(len(preferences)):
             data["topsis"]["rank"].append({
@@ -170,11 +170,9 @@ def update_attraction(attraction_id, category_id, attraction_name, lon, lat, ent
 @dss_bp.route('/dss/alternative/delete/<int:id>', methods=['DELETE'])
 @is_authenticated
 def delete_attraction(id):
-    print(f"Menerima permintaan untuk menghapus atraksi dengan ID: {id}")
-    
     # Mencari data berdasarkan ID
     attraction = Attraction.query.get(id)
-    
+
     if attraction:
         try:
             # Merge objek dengan sesi aktif sebelum menghapus
