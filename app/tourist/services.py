@@ -1,4 +1,4 @@
-from flask import flash
+from flask import flash, request
 from app.models import Attraction
 from core.database import db
 from sqlalchemy import text
@@ -26,8 +26,16 @@ class AttractionsService:
 
     @staticmethod
     def get_attractions(category_id = None):
-        user_lat = -7.7669578
-        user_lon = 110.3714613
+        if request.cookies.get('latitude') or request.cookies.get('longitude'):
+            user_lat = float(request.cookies["latitude"])
+            user_lon = float(request.cookies["longitude"])
+        else:
+            # default coordinate
+            user_lat = -7.7669578
+            user_lon = 110.3714613
+
+        # user_lat = -7.7669578
+        # user_lon = 110.3714613
 
         if category_id:
             # filter by id

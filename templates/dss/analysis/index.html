@@ -44,6 +44,7 @@
             <h5>Filter of Attractions</h5>
           </div>
           <div class="card-body">
+            <div class="label"> <p id="address">Address will appear here...</p></div>
             <form action="/dss/analysis" method="post">
               <div class="form-group row">
                 <div class="col-sm-2">
@@ -432,5 +433,5 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-  <script src="./script.js"></script>
+<script src="{{ url_for('static', filename='assets/js/pages/client-location.js') }}"></script>
 {% endblock javascripts %}

@@ -43,6 +43,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
+            <div class="label"> <p id="address">Address will appear here...</p></div>
             <select class="primary form-control bordered-dropdown" id="type-of-recreations">
               <option value="" selected="" disabled="" hidden="">-</option>
               <option>Culture &amp; History</option>
@@ -107,5 +108,7 @@
 
 {%endblock content %}
 
-<!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+
+<script src="{{ url_for('static', filename='assets/js/pages/client-location.js') }}"></script>
+{% endblock javascripts %}
