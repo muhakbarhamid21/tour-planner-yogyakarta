@@ -44,9 +44,13 @@
             <h5>Edit Criteria</h5>
           </div>
           <div class="card-body">
-            <form action="/dss/criteria" method="POST">
-
-              <input type="hidden" id="criteria_id" name="criteria_id" value="">
+            <form action="/dss/criteria" id="editcriteriaFrom" method="POST">
+              <input
+                type="hidden"
+                id="criteria_id"
+                name="criteria_id"
+                value=""
+              />
 
               <!-- Form untuk Parameter -->
               <div class="form-group row">
@@ -59,7 +63,7 @@
                   >
                     <option value="" selected disabled hidden>-</option>
                     {% for row in criteria %}
-                      <option value="{{ row.name }}">{{ row.name }}</option>
+                    <option value="{{ row.name }}">{{ row.name }}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -69,7 +73,11 @@
               <div class="form-group row">
                 <label class="col-form-label col-sm-2">Criteria</label>
                 <div class="col-sm-10 mb-3">
-                  <select class="form-control bordered-dropdown" id="criteria" name="criteria">
+                  <select
+                    class="form-control bordered-dropdown"
+                    id="criteria"
+                    name="criteria"
+                  >
                     <option value="" selected disabled hidden>-</option>
                     <option value="cost">cost</option>
                     <option value="benefit">benefit</option>
@@ -106,20 +114,21 @@
                 </thead>
                 <tbody>
                   {% for row in criteria %}
-                    <tr>
-                      <td class="text-center">{{ loop.index }}</td>
-                      <td class="text-center" >{{ row.name }}</td>
-                      <td class="text-center" >{{ row.criteria }}</td>
-                      <td class="text-center">
-                        <button class="btn btn-primary btn-sm"
-                                data-parameter="{{ row.name }}"
-                                data-criteria="{{ row.criteria }}"
-                                data-id="{{ row.id }}"
-                        >
-                          <i class="fas fa-edit"></i>
-                        </button>
-                      </td>
-                    </tr>
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ row.name }}</td>
+                    <td class="text-center">{{ row.criteria }}</td>
+                    <td class="text-center">
+                      <button
+                        class="btn btn-primary btn-sm"
+                        data-parameter="{{ row.name }}"
+                        data-criteria="{{ row.criteria }}"
+                        data-id="{{ row.id }}"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
                   {% endfor %}
                 </tbody>
               </table>

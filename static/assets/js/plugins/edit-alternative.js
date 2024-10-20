@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const editButtons = document.querySelectorAll(".edit-btn");
+  const form = document.getElementById("addeditForm");
 
+  // Fungsi untuk menangani pengisian data saat mengklik tombol edit
   editButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Mengambil data dari atribut tombol
       const attractionId = this.getAttribute("data-id");
       const categoryId = this.getAttribute("data-category-id");
       const attraction = this.getAttribute("data-name");
@@ -14,16 +15,44 @@ document.addEventListener("DOMContentLoaded", function () {
       const comment = this.getAttribute("data-reviews");
       const facility = this.getAttribute("data-facility");
 
-      // Memasukkan data ke dalam form
-      document.getElementById("attraction-id").value = attractionId; // hidden field for ID
-      document.getElementById("type-of-recreations").value = categoryId; // Mengisi Type of Attractions
-      document.getElementById("attraction").value = attraction; // Mengisi Attraction
-      document.getElementById("lon").value = lon; // Mengisi Long
-      document.getElementById("lat").value = lat; // Mengisi Lat
-      document.getElementById("entryPrice").value = entryPrice; // Mengisi Entry Price
-      document.getElementById("star").value = star; // Mengisi Star
-      document.getElementById("comment").value = comment; // Mengisi Comment
-      document.getElementById("facility").value = facility; // Mengisi Facility
+      // Mengisi data ke dalam form
+      document.getElementById("attraction-id").value = attractionId;
+      document.getElementById("type-of-recreations").value = categoryId;
+      document.getElementById("attraction").value = attraction;
+      document.getElementById("lon").value = lon;
+      document.getElementById("lat").value = lat;
+      document.getElementById("entryPrice").value = entryPrice;
+      document.getElementById("star").value = star;
+      document.getElementById("comment").value = comment;
+      document.getElementById("facility").value = facility;
     });
+  });
+
+  // Fungsi validasi form sebelum submit
+  form.addEventListener("submit", function (e) {
+    const category = document.getElementById("type-of-recreations").value;
+    const attraction = document.getElementById("attraction").value;
+    const lon = document.getElementById("lon").value;
+    const lat = document.getElementById("lat").value;
+    const entryPrice = document.getElementById("entryPrice").value;
+    const star = document.getElementById("star").value;
+    const comment = document.getElementById("comment").value;
+    const facility = document.getElementById("facility").value;
+
+    if (
+      !category ||
+      !attraction ||
+      !lon ||
+      !lat ||
+      !entryPrice ||
+      !star ||
+      !comment ||
+      !facility
+    ) {
+      e.preventDefault();
+      alert("Please fill in all required fields.");
+    } else {
+      alert("Attraction successfully saved!");
+    }
   });
 });
