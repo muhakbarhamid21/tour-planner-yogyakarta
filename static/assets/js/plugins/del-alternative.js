@@ -5,23 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       const attractionId = this.getAttribute("data-id");
 
-      if (confirm("Apakah Anda yakin ingin menghapus atraksi ini?")) {
+      if (confirm("Are you sure you want to delete this attraction?")) {
         fetch(`/dss/alternative/delete/${attractionId}`, {
           method: "DELETE",
         })
           .then((response) => {
             if (response.ok) {
-              alert("Atraksi berhasil dihapus!");
+              alert("Attraction successfully deleted!");
               // Refresh atau hapus baris dari tabel
               this.closest("tr").remove();
             } else {
               return response.json().then((data) => {
-                alert(`Gagal menghapus atraksi. Pesan: ${data.message}`);
+                alert(`Failed to delete attraction. Message: ${data.message}`);
               });
             }
           })
           .catch((error) => {
-            alert(`Terjadi kesalahan: ${error}`);
+            alert(`There is an error: ${error}`);
           });
       }
     });

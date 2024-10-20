@@ -51,7 +51,7 @@ function saveLocation() {
       (error) => {
         // Menangani kesalahan
         console.error(`Error Code: ${error.code}, Message: ${error.message}`);
-        alert("Unable to retrieve location. Please try again.");
+        alert("Unable to retrieve location. Please allow access to location.");
       }
     );
   } else {
