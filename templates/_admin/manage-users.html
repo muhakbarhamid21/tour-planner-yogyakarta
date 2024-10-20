@@ -20,7 +20,7 @@
         <div class="row align-items-center">
           <div class="col-md-12">
             <div class="page-header-title">
-              <h5 class="m-b-10">Manage Users</h5>
+              <h5 class="m-b-10">Users</h5>
             </div>
             <ul class="breadcrumb">
               <li class="breadcrumb-item">
@@ -28,7 +28,7 @@
                   ><i class="feather icon-home"></i
                 ></a>
               </li>
-              <li class="breadcrumb-item"><a href="#">Manage Users</a></li>
+              <li class="breadcrumb-item"><a href="#">Users</a></li>
             </ul>
           </div>
         </div>
@@ -52,25 +52,25 @@
                     <th class="text-center align-middle">Fullname</th>
                     <th class="text-center align-middle">Username</th>
                     <th class="text-center align-middle">Email</th>
-                    <th class="text-center align-middle">Editing</th>
+                    <!--<th class="text-center align-middle">Editing</th>-->
                   </tr>
                 </thead>
                 <tbody>
                   {% for user in users %}
-                    <tr>
-                      <td class="text-center">{{ loop.index }}</td>
-                      <td class="text-center">{{ user.fullname }}</td>
-                      <td class="text-center">{{ user.username }}</td>
-                      <td class="text-center">{{ user.email }}</td>
-                      <td class="text-center">
-                        <button class="btn btn-primary btn-sm disabled">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm disabled">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ user.fullname }}</td>
+                    <td class="text-center">{{ user.username }}</td>
+                    <td class="text-center">{{ user.email }}</td>
+                    <!--<td class="text-center">
+                      <button class="btn btn-primary btn-sm disabled">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm disabled">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>-->
+                  </tr>
                   {% endfor %}
                 </tbody>
               </table>
