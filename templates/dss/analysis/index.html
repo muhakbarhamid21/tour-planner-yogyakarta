@@ -36,7 +36,22 @@
     </div>
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
+
+    <!-- Card -->
     <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Generate Your Location</h5>
+          </div>
+          <div class="card-body">
+            <div class="label">
+              <p id="address">Address will appear here...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
@@ -44,7 +59,6 @@
             <h5>Filter of Attractions</h5>
           </div>
           <div class="card-body">
-            <div class="label"> <p id="address">Address will appear here...</p></div>
             <form action="/dss/analysis" method="post">
               <div class="form-group row">
                 <div class="col-sm-2">
@@ -60,9 +74,9 @@
                   >
                     <option value="all">All Category</option>
                     {% for category in categories %}
-                      <option value="{{ category.id }}">
-                        {{ category.name }}
-                      </option>
+                    <option value="{{ category.id }}">
+                      {{ category.name }}
+                    </option>
                     {% endfor %}
                   </select>
                 </div>
@@ -77,11 +91,18 @@
                 <div class="col-sm-9 mb-3">
                   <ul>
                     <li><strong>Distance:</strong> {{ weight.distance }}</li>
-                    <li><strong>Entry Price:</strong> {{ weight.entry_price }}</li>
+                    <li>
+                      <strong>Entry Price:</strong> {{ weight.entry_price }}
+                    </li>
                     <li><strong>Facility:</strong> {{ weight.facility }}</li>
                     <li><strong>Rating:</strong> {{ weight.rating.value }}</li>
-                    <li><strong>Rating Stars:</strong> {{ weight.rating.stars }}</li>
-                    <li><strong>Rating Reviews:</strong> {{ weight.rating.reviews }}</li>
+                    <li>
+                      <strong>Rating Stars:</strong> {{ weight.rating.stars }}
+                    </li>
+                    <li>
+                      <strong>Rating Reviews:</strong> {{ weight.rating.reviews
+                      }}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -102,6 +123,7 @@
           </div>
         </div>
       </div>
+
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
@@ -148,7 +170,9 @@
                   <tr>
                     <td class="text-left">{{ loop.index }}</td>
                     <td class="text-left">{{ attraction.name }}</td>
-                    <td class="text-left">{{ attraction.distance | round(2) }}</td>
+                    <td class="text-left">
+                      {{ attraction.distance | round(2) }}
+                    </td>
                     <td class="text-left">{{ attraction.entry_price }}</td>
                     <td class="text-left">{{ attraction.stars }}</td>
                     <td class="text-left">{{ attraction.reviews }}</td>
@@ -162,7 +186,7 @@
           </div>
         </div>
       </div>
-{#      Card#}
+      {# Card#}
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
@@ -182,10 +206,10 @@
                 <tbody>
                   {% for row in topsis.rank %}
                   <tr class="table-striped">
-                      <td>{{ loop.index }}</td>
-                      <td>{{ row.alternative }}</td>
-                      <td>{{ row.attraction }}</td>
-                      <td>{{ row.rank }}</td>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.alternative }}</td>
+                    <td>{{ row.attraction }}</td>
+                    <td>{{ row.rank }}</td>
                     <!-- Isi data di sini -->
                   </tr>
                   {% endfor %}
@@ -207,18 +231,10 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">
-                      Price (C1)
-                    </th>
-                    <th class="text-left align-middle">
-                      Facility (C2)
-                    </th>
-                    <th class="text-left align-middle">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle">
-                      Distance (C4)
-                    </th>
+                    <th class="text-left align-middle">Price (C1)</th>
+                    <th class="text-left align-middle">Facility (C2)</th>
+                    <th class="text-left align-middle">Rating (C3)</th>
+                    <th class="text-left align-middle">Distance (C4)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -247,18 +263,10 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">
-                      Price (C1)
-                    </th>
-                    <th class="text-left align-middle">
-                      Facility (C2)
-                    </th>
-                    <th class="text-left align-middle">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle">
-                      Distance (C4)
-                    </th>
+                    <th class="text-left align-middle">Price (C1)</th>
+                    <th class="text-left align-middle">Facility (C2)</th>
+                    <th class="text-left align-middle">Rating (C3)</th>
+                    <th class="text-left align-middle">Distance (C4)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -289,18 +297,10 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">
-                      Price (C1)
-                    </th>
-                    <th class="text-left align-middle">
-                      Facility (C2)
-                    </th>
-                    <th class="text-left align-middle">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle">
-                      Distance (C4)
-                    </th>
+                    <th class="text-left align-middle">Price (C1)</th>
+                    <th class="text-left align-middle">Facility (C2)</th>
+                    <th class="text-left align-middle">Rating (C3)</th>
+                    <th class="text-left align-middle">Distance (C4)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -330,26 +330,15 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">
-                      Solutions
-                    </th>
-                    <th class="text-left align-middle">
-                      Price (C1)
-                    </th>
-                    <th class="text-left align-middle">
-                      Facility (C2)
-                    </th>
-                    <th class="text-left align-middle">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle">
-                      Distance (C4)
-                    </th>
+                    <th class="text-left align-middle">Solutions</th>
+                    <th class="text-left align-middle">Price (C1)</th>
+                    <th class="text-left align-middle">Facility (C2)</th>
+                    <th class="text-left align-middle">Rating (C3)</th>
+                    <th class="text-left align-middle">Distance (C4)</th>
                   </tr>
                 </thead>
                 {% if topsis.solution %}
                 <tbody>
-
                   <tr>
                     <td>Postitif Ideal Solution (A<sup>+</sup>)</td>
                     <td>{{ topsis.solution.ideal_best[0] }}</td>
@@ -372,66 +361,57 @@
         </div>
 
         <!-- Card -->
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Distances</h5>
-          </div>
-          <div class="card-body table-border-style">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="text-left align-middle">
-
-                    </th>
-                    <th class="text-left align-middle">
-                      Price (C1)
-                    </th>
-                    <th class="text-left align-middle">
-                      Facility (C2)
-                    </th>
-                    <th class="text-left align-middle">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle">
-                      Distance (C4)
-                    </th>
-                  </tr>
-                </thead>
-                {% if topsis.distance %}
-                <tbody>
-                  <tr>
-                    <td>Distance to Ideal Postif</td>
-                    <td>{{ topsis.distance.dist_ideal_best[0] }}</td>
-                    <td>{{ topsis.distance.dist_ideal_best[1] }}</td>
-                    <td>{{ topsis.distance.dist_ideal_best[2] }}</td>
-                    <td>{{ topsis.distance.dist_ideal_best[3] }}</td>
-                  </tr>
-                  <tr>
-                    <td>Distance to Ideal Negatif</td>
-                    <td>{{ topsis.distance.dist_ideal_worst[0] }}</td>
-                    <td>{{ topsis.distance.dist_ideal_worst[1] }}</td>
-                    <td>{{ topsis.distance.dist_ideal_worst[2] }}</td>
-                    <td>{{ topsis.distance.dist_ideal_worst[3] }}</td>
-                  </tr>
-                </tbody>
-                {% endif %}
-              </table>
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <h5>Distances</h5>
+            </div>
+            <div class="card-body table-border-style">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-left align-middle"></th>
+                      <th class="text-left align-middle">Price (C1)</th>
+                      <th class="text-left align-middle">Facility (C2)</th>
+                      <th class="text-left align-middle">Rating (C3)</th>
+                      <th class="text-left align-middle">Distance (C4)</th>
+                    </tr>
+                  </thead>
+                  {% if topsis.distance %}
+                  <tbody>
+                    <tr>
+                      <td>Distance to Ideal Postif</td>
+                      <td>{{ topsis.distance.dist_ideal_best[0] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_best[1] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_best[2] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_best[3] }}</td>
+                    </tr>
+                    <tr>
+                      <td>Distance to Ideal Negatif</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[0] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[1] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[2] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[3] }}</td>
+                    </tr>
+                  </tbody>
+                  {% endif %}
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- [ Main Content ] end -->
     </div>
-    <!-- [ Main Content ] end -->
   </div>
+
+  <!-- End Contect -->
+
+  {%endblock content %}
+
+  <!-- Specific Page JS goes HERE  -->
+  {% block javascripts %}
+  <script src="{{ url_for('static', filename='assets/js/pages/client-location.js') }}"></script>
+  {% endblock javascripts %}
 </div>
-
-<!-- End Contect -->
-
-{%endblock content %}
-
-<!-- Specific Page JS goes HERE  -->
-{% block javascripts %}
-<script src="{{ url_for('static', filename='assets/js/pages/client-location.js') }}"></script>
-{% endblock javascripts %}

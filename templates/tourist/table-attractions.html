@@ -1,0 +1,374 @@
+<!-- Customer overview start -->
+<div class="col-md-12">
+  <div class="card table-card">
+    <div class="card-header">
+      <h5>Tourist Attractions</h5>
+      <div class="card-header-right">
+        <div class="btn-group card-option"></div>
+      </div>
+      <ul
+        class="nav nav-pills nav-fill mt-3 border-bottom pb-3"
+        id="pills-tab"
+        role="tablist"
+      >
+        <!-- TAB SATU-->
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="one-tab"
+            data-bs-toggle="pill"
+            href="#one"
+            role="tab"
+            aria-controls="one"
+            aria-selected="true"
+          >
+            All</a
+          >
+        </li>
+        <!-- TAB DUA-->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="two-tab"
+            data-bs-toggle="pill"
+            href="#two"
+            role="tab"
+            aria-controls="two"
+            aria-selected="false"
+          >
+            Culter & History</a
+          >
+        </li>
+        <!-- TAB TIGA-->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="three-tab"
+            data-bs-toggle="pill"
+            href="#three"
+            role="tab"
+            aria-controls="three"
+            aria-selected="false"
+          >
+            Education & Learning</a
+          >
+        </li>
+        <!-- TAB EMPAT-->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="four-tab"
+            data-bs-toggle="pill"
+            href="#four"
+            role="tab"
+            aria-controls="four"
+            aria-selected="false"
+          >
+            Nature & Recreation</a
+          >
+        </li>
+        <!-- TAB LIMA-->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="five-tab"
+            data-bs-toggle="pill"
+            href="#five"
+            role="tab"
+            aria-controls="five"
+            aria-selected="false"
+          >
+            Adventure</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="card-body p-0">
+      <div class="tab-content" id="pills-tabContent">
+        <!-- TABEL SATU -->
+        <div
+          class="tab-pane fade show active"
+          id="one"
+          role="tabpanel"
+          aria-labelledby="one-tab"
+        >
+          <div class="table-responsive">
+            <div class="customer-scroll">
+              <table class="table table-hover m-b-0">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Category
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions %}
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">
+                      {{ attraction.distance | round(2) }}
+                    </td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL DUA -->
+        <div
+          class="tab-pane fade"
+          id="two"
+          role="tabpanel"
+          aria-labelledby="two-tab"
+        >
+          <div class="table-responsive">
+            <div class="customer-scroll1">
+              <table class="table table-hover m-b-0">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Category
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions if attraction.category.id ==
+                  1 %}
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">
+                      {{ attraction.distance | round(2) }}
+                    </td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL TIGA -->
+        <div
+          class="tab-pane fade"
+          id="three"
+          role="tabpanel"
+          aria-labelledby="three-tab"
+        >
+          <div class="table-responsive">
+            <div class="customer-scroll2">
+              <table class="table table-hover m-b-0">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Category
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions if attraction.category.id ==
+                  2 %}
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">
+                      {{ attraction.distance | round(2) }}
+                    </td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL EMPAT -->
+        <div
+          class="tab-pane fade"
+          id="four"
+          role="tabpanel"
+          aria-labelledby="four-tab"
+        >
+          <div class="table-responsive">
+            <div class="customer-scroll3">
+              <table class="table table-hover m-b-0">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Category
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions if attraction.category.id ==
+                  3 %}
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">
+                      {{ attraction.distance | round(2) }}
+                    </td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL LIMA -->
+        <div
+          class="tab-pane fade"
+          id="five"
+          role="tabpanel"
+          aria-labelledby="five-tab"
+        >
+          <div class="table-responsive">
+            <div class="customer-scroll3">
+              <table class="table table-hover m-b-0">
+                <thead>
+                  <tr>
+                    <th class="text-center align-middle" rowspan="2">#</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Attraction
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">Rating</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Facility
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      Category
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star</th>
+                    <th class="text-center align-middle">Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for attraction in attractions if attraction.category.id ==
+                  4 %}
+                  <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">
+                      {{ attraction.distance | round(2) }}
+                    </td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

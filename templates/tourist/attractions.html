@@ -24,9 +24,7 @@
             </div>
             <ul class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="/dashboard"
-                  ><i class="feather icon-home"></i
-                ></a>
+                <a href="/dashboard"><i class="feather icon-home"></i></a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#">Tourist Attractions</a>
@@ -40,75 +38,33 @@
     <!-- [ Main Content ] start -->
     <div class="row">
       <!-- Card -->
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <div class="label"> <p id="address">Address will appear here...</p></div>
-            <select class="primary form-control bordered-dropdown" id="type-of-recreations">
-              <option value="" selected="" disabled="" hidden="">-</option>
-              <option>Culture &amp; History</option>
-              <option>Education &amp; Learning</option>
-              <option>Nature &amp; Recreation</option>
-              <option>Adventure</option>
-            </select>
-          </div>
-          <div class="card-body table-border-style">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="text-center align-middle" rowspan="2">#</th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Attraction
-                    </th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Distance (KM)
-                    </th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Entry Price
-                    </th>
-                    <th class="text-center align-middle" colspan="2">Rating</th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Facility
-                    </th>
-                    <th class="text-center align-middle" rowspan="2">
-                      Category
-                    </th>
-                  </tr>
-                  <tr>
-                    <th class="text-center align-middle">Star</th>
-                    <th class="text-center align-middle">Comment</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for attraction in attractions %}
-                  <tr>
-                    <td class="text-center">{{ loop.index }}</td>
-                    <td class="text-center">{{ attraction.name }}</td>
-                    <td class="text-center">{{ attraction.distance | round(2) }}</td>
-                    <td class="text-center">{{ attraction.entry_price }}</td>
-                    <td class="text-center">{{ attraction.stars }}</td>
-                    <td class="text-center">{{ attraction.reviews }}</td>
-                    <td class="text-center">{{ attraction.facility }}</td>
-                    <td class="text-center">{{ attraction.category.name }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <h5>Generate Your Location</h5>
+            </div>
+            <div class="card-body">
+              <div class="label">
+                <p id="address">Address will appear here...</p>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Card -->
+        {% include 'tourist/table-attractions.html' %}
       </div>
+      <!-- [ Main Content ] end -->
     </div>
-    <!-- [ Main Content ] end -->
   </div>
+
+  <!-- End Contect -->
+
+  {%endblock content %} {% block javascripts %}
+
+  <script src="{{ url_for('static', filename='assets/js/pages/client-location.js') }}"></script>
+  <script src="/static/assets/js/plugins/apexcharts.min.js"></script>
+
+  {% endblock javascripts %}
 </div>
-
-<!-- End Contect -->
-
-{%endblock content %}
-
-{% block javascripts %}
-
-<script src="{{ url_for('static', filename='assets/js/pages/client-location.js') }}"></script>
-{% endblock javascripts %}
