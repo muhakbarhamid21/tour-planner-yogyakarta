@@ -71,6 +71,7 @@ def analysis():
 
     topsis = {
         "rank": [],
+        "criteria_weights": ['empty', 'empty', 'empty', 'empty']
     }
 
     data = {

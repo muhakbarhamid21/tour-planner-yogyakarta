@@ -37,8 +37,8 @@
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
 
-    <!-- Card -->
     <div class="row">
+      <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
@@ -135,49 +135,49 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle" rowspan="3">#</th>
-                    <th class="text-left align-middle" rowspan="3">
+                    <th class="text-center align-middle" rowspan="3">#</th>
+                    <th class="text-center align-middle" rowspan="3">
                       Attraction
                     </th>
-                    <th class="text-left align-middle" colspan="6">
+                    <th class="text-center align-middle" colspan="5">
                       Parameter
                     </th>
-                  </tr>
-                  <tr>
-                    <th class="text-left align-middle" rowspan="2">
-                      Distance (KM) (C1)
-                    </th>
-                    <th class="text-left align-middle" rowspan="2">
-                      Entry Price (C2)
-                    </th>
-                    <th class="text-left align-middle" colspan="2">
-                      Rating (C3)
-                    </th>
-                    <th class="text-left align-middle" rowspan="2">
-                      Facility (C4)
-                    </th>
-                    <th class="text-left align-middle" rowspan="2">
-                      Category (Unused)
+                    <th class="text-center align-middle" rowspan="3">
+                      Type of Attractions
                     </th>
                   </tr>
                   <tr>
-                    <th class="text-left align-middle">Star (C3.1)</th>
-                    <th class="text-left align-middle">Comment (C3.2)</th>
+                    <th class="text-center align-middle" rowspan="2">
+                      (C<sub>1</sub>) Distance (KM)
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      (C<sub>2</sub>) Entry Price
+                    </th>
+                    <th class="text-center align-middle" colspan="2">
+                      (C<sub>3</sub>) Rating
+                    </th>
+                    <th class="text-center align-middle" rowspan="2">
+                      (C<sub>4</sub>) Facility
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">Star (C3.1)</th>
+                    <th class="text-center align-middle">Comment (C3.2)</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for attraction in attractions %}
                   <tr>
-                    <td class="text-left">{{ loop.index }}</td>
-                    <td class="text-left">{{ attraction.name }}</td>
-                    <td class="text-left">
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-center">{{ attraction.name }}</td>
+                    <td class="text-center">
                       {{ attraction.distance | round(2) }}
                     </td>
-                    <td class="text-left">{{ attraction.entry_price }}</td>
-                    <td class="text-left">{{ attraction.stars }}</td>
-                    <td class="text-left">{{ attraction.reviews }}</td>
-                    <td class="text-left">{{ attraction.facility }}</td>
-                    <td class="text-left">{{ attraction.category.name }}</td>
+                    <td class="text-center">{{ attraction.entry_price }}</td>
+                    <td class="text-center">{{ attraction.stars }}</td>
+                    <td class="text-center">{{ attraction.reviews }}</td>
+                    <td class="text-center">{{ attraction.facility }}</td>
+                    <td class="text-center">{{ attraction.category.name }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -186,7 +186,8 @@
           </div>
         </div>
       </div>
-      {# Card#}
+
+      <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
@@ -197,10 +198,10 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">No</th>
-                    <th class="text-left align-middle">Alternatif</th>
-                    <th class="text-left align-middle">Preferences</th>
-                    <th class="text-left align-middle">Ranking</th>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Alternatif</th>
+                    <th class="text-center align-middle">Preferences</th>
+                    <th class="text-center align-middle">Ranking</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -231,19 +232,27 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">Price (C1)</th>
-                    <th class="text-left align-middle">Facility (C2)</th>
-                    <th class="text-left align-middle">Rating (C3)</th>
-                    <th class="text-left align-middle">Distance (C4)</th>
+                    <th class="text-center align-middle">
+                      (C<sub>1</sub>) Distance
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>2</sub>) Entry Price
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>3</sub>) Rating
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>4</sub>) Facility
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for alt in topsis.aggregated_data %}
                   <tr>
-                    <td>{{ alt[0] }}</td>
-                    <td>{{ alt[1] }}</td>
-                    <td>{{ alt[2]|round(2) }}</td>
                     <td>{{ alt[3]|round(2) }}</td>
+                    <td>{{ alt[0] }}</td>
+                    <td>{{ alt[2]|round(2) }}</td>
+                    <td>{{ alt[1] }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -252,6 +261,7 @@
           </div>
         </div>
       </div>
+
       <!-- Card -->
       <div class="col-sm-12">
         <div class="card">
@@ -263,19 +273,27 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">Price (C1)</th>
-                    <th class="text-left align-middle">Facility (C2)</th>
-                    <th class="text-left align-middle">Rating (C3)</th>
-                    <th class="text-left align-middle">Distance (C4)</th>
+                    <th class="text-center align-middle">
+                      (C<sub>1</sub>) Distance
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>2</sub>) Entry Price
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>3</sub>) Rating
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>4</sub>) Facility
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for alt in topsis.norm_data %}
                   <tr>
-                    <td>{{ alt[0] }}</td>
-                    <td>{{ alt[1] }}</td>
-                    <td>{{ alt[2] }}</td>
                     <td>{{ alt[3] }}</td>
+                    <td>{{ alt[0] }}</td>
+                    <td>{{ alt[2] }}</td>
+                    <td>{{ alt[1] }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -290,26 +308,47 @@
         <div class="card">
           <div class="card-header">
             <h5>Weighted Data</h5>
-            <p>{{ topsis.criteria_weights }}</p>
           </div>
           <div class="card-body table-border-style">
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">Price (C1)</th>
-                    <th class="text-left align-middle">Facility (C2)</th>
-                    <th class="text-left align-middle">Rating (C3)</th>
-                    <th class="text-left align-middle">Distance (C4)</th>
+                    <th class="text-center align-middle">
+                      (C<sub>1</sub>) Distance
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>2</sub>) Entry Price
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>3</sub>) Rating
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>4</sub>) Facility
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center align-middle">
+                      Weight: {{ topsis.criteria_weights[3] }}
+                    </th>
+                    <th class="text-center align-middle">
+                      Weight: {{ topsis.criteria_weights[0] }}
+                    </th>
+                    <th class="text-center align-middle">
+                      Weight: {{ topsis.criteria_weights[2] }}
+                    </th>
+                    <th class="text-center align-middle">
+                      Weight: {{ topsis.criteria_weights[1] }}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for alt in topsis.weighted_data %}
                   <tr>
-                    <td>{{ alt[0] }}</td>
-                    <td>{{ alt[1] }}</td>
-                    <td>{{ alt[2] }}</td>
                     <td>{{ alt[3] }}</td>
+                    <td>{{ alt[0] }}</td>
+                    <td>{{ alt[2] }}</td>
+                    <td>{{ alt[1] }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -330,28 +369,36 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-left align-middle">Solutions</th>
-                    <th class="text-left align-middle">Price (C1)</th>
-                    <th class="text-left align-middle">Facility (C2)</th>
-                    <th class="text-left align-middle">Rating (C3)</th>
-                    <th class="text-left align-middle">Distance (C4)</th>
+                    <th class="text-center align-middle">Solutions</th>
+                    <th class="text-center align-middle">
+                      (C<sub>1</sub>) Distance
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>2</sub>) Entry Price
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>3</sub>) Rating
+                    </th>
+                    <th class="text-center align-middle">
+                      (C<sub>4</sub>) Facility
+                    </th>
                   </tr>
                 </thead>
                 {% if topsis.solution %}
                 <tbody>
                   <tr>
                     <td>Postitif Ideal Solution (A<sup>+</sup>)</td>
-                    <td>{{ topsis.solution.ideal_best[0] }}</td>
-                    <td>{{ topsis.solution.ideal_best[1] }}</td>
-                    <td>{{ topsis.solution.ideal_best[2] }}</td>
                     <td>{{ topsis.solution.ideal_best[3] }}</td>
+                    <td>{{ topsis.solution.ideal_best[0] }}</td>
+                    <td>{{ topsis.solution.ideal_best[2] }}</td>
+                    <td>{{ topsis.solution.ideal_best[1] }}</td>
                   </tr>
                   <tr>
                     <td>Negatif Ideal Solution (A<sup>-</sup>)</td>
-                    <td>{{ topsis.solution.ideal_worst[0] }}</td>
-                    <td>{{ topsis.solution.ideal_worst[1] }}</td>
-                    <td>{{ topsis.solution.ideal_worst[2] }}</td>
                     <td>{{ topsis.solution.ideal_worst[3] }}</td>
+                    <td>{{ topsis.solution.ideal_worst[0] }}</td>
+                    <td>{{ topsis.solution.ideal_worst[2] }}</td>
+                    <td>{{ topsis.solution.ideal_worst[1] }}</td>
                   </tr>
                 </tbody>
                 {% endif %}
@@ -364,35 +411,43 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h5>Distances</h5>
+              <h5>Distance to Ideal Solution</h5>
             </div>
             <div class="card-body table-border-style">
               <div class="table-responsive">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th class="text-left align-middle"></th>
-                      <th class="text-left align-middle">Price (C1)</th>
-                      <th class="text-left align-middle">Facility (C2)</th>
-                      <th class="text-left align-middle">Rating (C3)</th>
-                      <th class="text-left align-middle">Distance (C4)</th>
+                      <th class="text-center align-middle">Distance</th>
+                      <th class="text-center align-middle">
+                        (C<sub>1</sub>) Distance
+                      </th>
+                      <th class="text-center align-middle">
+                        (C<sub>2</sub>) Entry Price
+                      </th>
+                      <th class="text-center align-middle">
+                        (C<sub>3</sub>) Rating
+                      </th>
+                      <th class="text-center align-middle">
+                        (C<sub>4</sub>) Facility
+                      </th>
                     </tr>
                   </thead>
                   {% if topsis.distance %}
                   <tbody>
                     <tr>
                       <td>Distance to Ideal Postif</td>
-                      <td>{{ topsis.distance.dist_ideal_best[0] }}</td>
-                      <td>{{ topsis.distance.dist_ideal_best[1] }}</td>
-                      <td>{{ topsis.distance.dist_ideal_best[2] }}</td>
                       <td>{{ topsis.distance.dist_ideal_best[3] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_best[0] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_best[2] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_best[1] }}</td>
                     </tr>
                     <tr>
                       <td>Distance to Ideal Negatif</td>
-                      <td>{{ topsis.distance.dist_ideal_worst[0] }}</td>
-                      <td>{{ topsis.distance.dist_ideal_worst[1] }}</td>
-                      <td>{{ topsis.distance.dist_ideal_worst[2] }}</td>
                       <td>{{ topsis.distance.dist_ideal_worst[3] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[0] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[2] }}</td>
+                      <td>{{ topsis.distance.dist_ideal_worst[1] }}</td>
                     </tr>
                   </tbody>
                   {% endif %}
