@@ -1,4 +1,7 @@
+import os
 from urllib import request
+
+import jwt
 
 from app.dss.services import DssService
 from app.models import Attraction
@@ -18,6 +21,8 @@ dss_bp = Blueprint('dss', __name__, root_path="/dss")
 @dss_bp.route('/dss/weight', methods=['GET', 'POST'])
 @is_authenticated
 def weight():
+    token = request.cookies.get('token')
+    
     if request.method == "POST":
         DssService.update_weight()
         return redirect(url_for("dss.analysis"))
@@ -25,16 +30,42 @@ def weight():
     weight = DssService.get_weight()
     categories = AttractionsService.get_attraction_categories()
 
+    # GET USERNAME
+    if not token:
+        return redirect(url_for('accounts.signin'))
+    try:
+        decoded_token = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=["HS256"])
+        username_data = {"username": decoded_token.get('username')}
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('accounts.signin'))
+    except jwt.InvalidTokenError:
+        return redirect(url_for('accounts.signin'))
+
     data = {
         "weight": weight,
-        "categories": categories
+        "categories": categories,
+        "username": username_data,
     }
+    
     return render_template("dss/weight/index.html", **data)
 
 
 @dss_bp.route('/dss/analysis', methods=['GET', 'POST'])
 @is_authenticated
 def analysis():
+    token = request.cookies.get('token')
+    
+    # GET USERNAME
+    if not token:
+        return redirect(url_for('accounts.signin'))
+    try:
+        decoded_token = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=["HS256"])
+        username_data = {"username": decoded_token.get('username')}
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('accounts.signin'))
+    except jwt.InvalidTokenError:
+        return redirect(url_for('accounts.signin')) 
+    
     categories = AttractionsService.get_attraction_categories()
     weight = DssService.get_weight()
 
@@ -45,9 +76,9 @@ def analysis():
     data = {
         "categories": categories,
         "weight": weight,
-        "topsis": topsis
+        "topsis": topsis,
+        "username": username_data
     }
-
 
     if request.method == "POST":
         category_id = request.form['category']
@@ -88,6 +119,21 @@ def analysis():
 @is_authenticated
 def alternative():
     data = {}
+
+    token = request.cookies.get('token')
+
+    # GET USERNAME
+    if not token:
+        return redirect(url_for('accounts.signin'))
+    try:
+        decoded_token = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=["HS256"])
+        username_data = {"username": decoded_token.get('username')}
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('accounts.signin'))
+    except jwt.InvalidTokenError:
+        return redirect(url_for('accounts.signin')) 
+
+    data["username"] = username_data 
 
     if request.method == 'POST':
         attraction_id = request.form.get('attraction_id')  # Get attraction ID from the form if exists
@@ -192,9 +238,24 @@ def delete_attraction(id):
 @dss_bp.route('/dss/criteria', methods=['GET', 'POST'])
 @is_authenticated
 def criteria():
+    token = request.cookies.get('token')
+
+    # Validasi token dan ambil username
+    if not token:
+        return redirect(url_for('accounts.signin'))
+    try:
+        decoded_token = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=["HS256"])
+        username_data = {"username": decoded_token.get('username')}  # Simpan username dalam dictionary
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('accounts.signin'))  # Token expired, redirect ke login
+    except jwt.InvalidTokenError:
+        return redirect(url_for('accounts.signin'))
+    
+    
     criteria = DssService.get_criteria()
     data = {
-        "criteria": criteria
+        "criteria": criteria,
+        "username": username_data
     }
 
     if request.method == "POST":

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, request, url_for
 import jwt, os
 from app.dash.services2 import get_attraction_count_for_category
 from middleware.auth import is_authenticated
@@ -36,6 +36,20 @@ def dashboard():
     count_category_3 = get_attraction_count_for_category(3)
     count_category_4 = get_attraction_count_for_category(4)
     
+    # GET USERNAME
+    if not token:
+        return redirect(url_for('accounts.signin'))
+    try:
+        decoded_token = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=["HS256"])
+        username = decoded_token.get('username')
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('accounts.signin'))
+    except jwt.InvalidTokenError:
+        return redirect(url_for('accounts.signin'))
+    username = {
+        "username": username
+    }
+    
     data = {
         "count_category_1": count_category_1,
         "count_category_2": count_category_2,
@@ -45,4 +59,4 @@ def dashboard():
     
     cookies_data = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=['HS256'])
     
-    return render_template("dash/index.html", data=data)
+    return render_template("dash/index.html", data=data, username=username)
