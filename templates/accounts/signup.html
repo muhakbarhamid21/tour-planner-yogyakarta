@@ -24,7 +24,6 @@
             <h4 class="mb-3 f-w-400">Signup</h4>
 
             <form role="form" method="post" action="/accounts/signup">
-
               <!-- Full Name -->
               <div class="input-group mb-3">
                 <span class="input-group-text">
@@ -41,8 +40,7 @@
 
               <!-- Username -->
               <div class="input-group mb-3">
-                <span class="input-group-text"
-                  >@</span>
+                <span class="input-group-text">@</span>
                 <input
                   type="text"
                   name="username"
@@ -85,10 +83,7 @@
                 <span class="input-group-text">
                   <i class="feather icon-shield"></i>
                 </span>
-                <select 
-                  name="role" 
-                  class="form-control" 
-                  required>
+                <select name="role" class="form-control" required>
                   <option value="" disabled selected>Select Role</option>
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
@@ -106,7 +101,10 @@
 
               <p class="mb-2">
                 Already have an account?
-                <a href="/accounts/signin" class="f-w-400">Sign In</a>
+                <a href="/accounts/signin" class="f-w-400"
+                  >Sign In<br /></a>
+                  Back to <a href="/">Home Page</a></a
+                >
               </p>
             </form>
           </div>
